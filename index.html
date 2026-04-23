@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>MathMagique PRO</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+margin:0;
+font-family:sans-serif;
+background:#6C63FF;
+color:white;
+}
+
+header{
+text-align:center;
+padding:15px;
+font-size:20px;
+font-weight:bold;
+}
+
+.nav{
+display:flex;
+position:fixed;
+bottom:0;
+width:100%;
+background:#fff;
+}
+
+.nav button{
+flex:1;
+padding:15px;
+border:none;
+background:#fff;
+}
+
+.section{
+display:none;
+padding:20px;
+min-height:calc(100vh - 100px);
+}
+
+.active{display:block;}
+
+.card{
+background:white;
+color:black;
+padding:15px;
+border-radius:15px;
+margin-top:10px;
+}
+
+button{
+padding:12px;
+border:none;
+border-radius:10px;
+margin-top:10px;
+width:100%;
+background:#FF6584;
+color:white;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:10px;
+font-size:18px;
+}
+
+#avatar{
+font-size:50px;
+text-align:center;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>✨ MathMagique</header>
+
+<!-- COURS -->
+<div id="cours" class="section active">
+<div class="card">
+<h3>Addition</h3>
+<p>2 + 3 = 5</p>
+</div>
+
+<div class="card">
+<h3>Multiplication</h3>
+<p>3 × 4 = 12</p>
+</div>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz" class="section">
+<div class="card">
+<h2 id="q"></h2>
+<input type="number" id="rep">
+<button onclick="check()">Valider</button>
+<p id="result"></p>
+<p id="xp"></p>
+</div>
+</div>
+
+<!-- PROFIL -->
+<div id="profil" class="section">
+<div id="avatar">🙂</div>
+<div class="card">
+<p id="level"></p>
+<button onclick="changeSkin()">Changer skin</button>
+</div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+<button onclick="show('cours')">📚</button>
+<button onclick="show('quiz')">🎮</button>
+<button onclick="show('profil')">👤</button>
+</div>
+
+<!-- SONS -->
+<audio id="good" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
+<audio id="bad" src="https://www.soundjay.com/buttons/sounds/button-10.mp3"></audio>
+
+<script>
+
+function show(id){
+document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+
+// QUIZ
+let correct;
+let xp = parseInt(localStorage.getItem("xp")) || 0;
+
+function newQ(){
+let a=Math.floor(Math.random()*10);
+let b=Math.floor(Math.random()*10);
+correct=a+b;
+document.getElementById("q").innerText = a + " + " + b;
+}
+
+function check(){
+let r=parseInt(document.getElementById("rep").value);
+
+if(r===correct){
+xp++;
+document.getElementById("result").innerText="✅";
+document.getElementById("good").play();
+}else{
+document.getElementById("result").innerText="❌ ("+correct+")";
+document.getElementById("bad").play();
+}
+
+localStorage.setItem("xp", xp);
+updateProfile();
+newQ();
+}
+
+function updateProfile(){
+let level = Math.floor(xp/5);
+document.getElementById("xp").innerText="XP: "+xp;
+document.getElementById("level").innerText="Niveau: "+level;
+}
+
+// SKINS
+function changeSkin(){
+if(xp >= 10){
+document.getElementById("avatar").innerText="😎";
+}else if(xp >= 20){
+document.getElementById("avatar").innerText="🤖";
+}else{
+alert("Pas assez d'XP !");
+}
+}
+
+updateProfile();
+newQ();
+
+</script>
+
+</body>
+</html>
