@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>MathMagique — Cours de Maths du CP à la Terminale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #FF6B35;
+  --secondary: #4ECDC4;
+  --accent: #FFE66D;
+  --purple: #A78BFA;
+  --green: #6BCB77;
+  --dark: #1A1A2E;
+  --card-bg: #fff;
+  --bg: #F8F5FF;
+  --text: #2D2D44;
+  --muted: #7B7B9A;
+  --radius: 20px;
+  --shadow: 0 8px 32px rgba(80,40,120,0.10);
+}
+
+- { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+font-family: ‘Nunito’, sans-serif;
+background: var(–bg);
+color: var(–text);
+min-height: 100vh;
+overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+position: sticky; top: 0; z-index: 100;
+background: rgba(255,255,255,0.95);
+backdrop-filter: blur(12px);
+border-bottom: 2px solid #EEE8FF;
+padding: 0 20px;
+display: flex; align-items: center; justify-content: space-between;
+height: 64px;
+}
+.nav-logo {
+font-family: ‘Baloo 2’, cursive;
+font-size: 1.5rem; font-weight: 800;
+background: linear-gradient(135deg, var(–primary), var(–purple));
+-webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.nav-logo span { -webkit-text-fill-color: var(–accent); }
+.nav-btn {
+background: linear-gradient(135deg, var(–primary), #FF8C42);
+color: #fff; border: none; border-radius: 50px;
+padding: 8px 20px; font-family: ‘Nunito’, sans-serif;
+font-weight: 700; font-size: 0.9rem; cursor: pointer;
+box-shadow: 0 4px 15px rgba(255,107,53,0.35);
+transition: transform 0.2s, box-shadow 0.2s;
+}
+.nav-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,107,53,0.45); }
+
+/* HERO */
+.hero {
+padding: 48px 24px 40px;
+text-align: center;
+background: linear-gradient(160deg, #fff 0%, #F0EBFF 100%);
+position: relative; overflow: hidden;
+}
+.hero::before {
+content: ‘’;
+position: absolute; top: -60px; right: -60px;
+width: 220px; height: 220px;
+border-radius: 50%;
+background: radial-gradient(circle, rgba(167,139,250,0.18) 0%, transparent 70%);
+}
+.hero-badge {
+display: inline-flex; align-items: center; gap: 6px;
+background: #FFF4E6; border: 1.5px solid #FFD9B3;
+border-radius: 50px; padding: 6px 16px;
+font-size: 0.8rem; font-weight: 700; color: var(–primary);
+margin-bottom: 20px;
+}
+.hero h1 {
+font-family: ‘Baloo 2’, cursive;
+font-size: 2.4rem; font-weight: 800; line-height: 1.15;
+margin-bottom: 14px;
+}
+.hero h1 span {
+background: linear-gradient(135deg, var(–primary), var(–purple));
+-webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero p {
+font-size: 1.05rem; color: var(–muted); max-width: 360px; margin: 0 auto 28px;
+line-height: 1.6;
+}
+.hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+background: linear-gradient(135deg, var(–primary), #FF8C42);
+color: #fff; border: none; border-radius: 50px;
+padding: 14px 28px; font-family: ‘Nunito’, sans-serif;
+font-weight: 800; font-size: 1rem; cursor: pointer;
+box-shadow: 0 4px 20px rgba(255,107,53,0.4);
+transition: transform 0.2s;
+}
+.btn-primary:hover { transform: scale(1.04); }
+.btn-secondary {
+background: #fff; color: var(–primary);
+border: 2px solid var(–primary); border-radius: 50px;
+padding: 14px 28px; font-family: ‘Nunito’, sans-serif;
+font-weight: 800; font-size: 1rem; cursor: pointer;
+transition: transform 0.2s;
+}
+.btn-secondary:hover { transform: scale(1.04); }
+
+/* STATS */
+.stats-bar {
+display: flex; justify-content: center; gap: 0;
+background: var(–dark); padding: 20px 24px;
+flex-wrap: wrap; gap: 24px;
+}
+.stat { text-align: center; }
+.stat-num {
+font-family: ‘Baloo 2’, cursive;
+font-size: 1.6rem; font-weight: 800; color: var(–accent);
+}
+.stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.7); }
+
+/* SECTION TITLES */
+.section-title {
+font-family: ‘Baloo 2’, cursive;
+font-size: 1.7rem; font-weight: 800;
+text-align: center; margin-bottom: 6px;
+}
+.section-sub {
+text-align: center; color: var(–muted);
+font-size: 0.95rem; margin-bottom: 28px;
+}
+
+/* PRICING BANNER */
+.pricing-banner {
+margin: 32px 16px;
+background: linear-gradient(135deg, var(–dark), #2D1B69);
+border-radius: var(–radius);
+padding: 28px 24px;
+color: #fff; text-align: center;
+position: relative; overflow: hidden;
+}
+.pricing-banner::after {
+content: ‘⭐’;
+position: absolute; top: -10px; right: 16px;
+font-size: 5rem; opacity: 0.1;
+}
+.pricing-banner h2 {
+font-family: ‘Baloo 2’, cursive;
+font-size: 1.5rem; margin-bottom: 8px;
+}
+.pricing-banner p { color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: 16px; }
+.price-tag {
+display: inline-block;
+background: var(–accent); color: var(–dark);
+border-radius: 50px; padding: 8px 24px;
+font-family: ‘Baloo 2’, cursive;
+font-size: 1.8rem; font-weight: 800; margin-bottom: 16px;
+}
+.free-badge {
+background: rgba(78,205,196,0.2); border: 1px solid var(–secondary);
+border-radius: 50px; padding: 6px 16px;
+font-size: 0.85rem; color: var(–secondary); display: inline-block;
+margin-bottom: 16px;
+}
+
+/* LEVELS GRID */
+.levels-section { padding: 36px 16px; }
+.levels-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 14px;
+}
+.level-card {
+background: var(–card-bg);
+border-radius: var(–radius);
+padding: 18px 14px;
+box-shadow: var(–shadow);
+cursor: pointer;
+transition: transform 0.2s, box-shadow 0.2s;
+position: relative; overflow: hidden;
+border: 2px solid transparent;
+}
+.level-card:hover, .level-card:active {
+transform: translateY(-4px);
+box-shadow: 0 16px 40px rgba(80,40,120,0.15);
+}
+.level-card.primaire { border-color: #B8F7D0; }
+.level-card.college { border-color: #B8E0FF; }
+.level-card.lycee { border-color: #FFD6E0; }
+.level-emoji { font-size: 2.2rem; margin-bottom: 8px; }
+.level-name {
+font-family: ‘Baloo 2’, cursive;
+font-weight: 800; font-size: 1rem; margin-bottom: 2px;
+}
+.level-sub { font-size: 0.75rem; color: var(–muted); margin-bottom: 10px; }
+.level-pill {
+display: inline-flex; align-items: center; gap: 4px;
+font-size: 0.72rem; font-weight: 700; padding: 3px 10px;
+border-radius: 50px;
+}
+.pill-green { background: #E6FFF0; color: #2D8A4E; }
+.pill-blue { background: #E6F0FF; color: #2D5FA8; }
+.pill-pink { background: #FFE6EC; color: #A8284A; }
+.level-free-count {
+position: absolute; top: 12px; right: 12px;
+background: var(–accent); color: var(–dark);
+font-size: 0.65rem; font-weight: 800; padding: 2px 8px;
+border-radius: 50px;
+}
+
+/* FEATURES */
+.features-section { padding: 36px 16px; background: #fff; }
+.features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.feature-card {
+background: var(–bg); border-radius: 16px;
+padding: 20px 16px; text-align: center;
+}
+.feature-icon { font-size: 2rem; margin-bottom: 10px; }
+.feature-title { font-weight: 800; font-size: 0.9rem; margin-bottom: 4px; }
+.feature-desc { font-size: 0.78rem; color: var(–muted); line-height: 1.5; }
+
+/* FOOTER */
+footer {
+background: var(–dark); color: rgba(255,255,255,0.7);
+text-align: center; padding: 32px 24px;
+font-size: 0.85rem;
+}
+footer .footer-logo {
+font-family: ‘Baloo 2’, cursive;
+font-size: 1.4rem; font-weight: 800; color: var(–accent);
+margin-bottom: 12px;
+}
+footer a { color: var(–secondary); text-decoration: none; }
+
+/* COURSE PAGE */
+.course-page { display: none; }
+.course-page.active { display: block; }
+.home-page.hidden { display: none; }
+
+/* Back button */
+.back-btn {
+display: flex; align-items: center; gap: 8px;
+background: none; border: none; cursor: pointer;
+font-family: ‘Nunito’, sans-serif;
+font-weight: 700; font-size: 1rem; color: var(–text);
+padding: 16px 20px;
+}
+.back-btn:hover { color: var(–primary); }
+
+/* Level page */
+.level-hero {
+padding: 20px 20px 32px;
+text-align: center;
+}
+.level-hero h2 {
+font-family: ‘Baloo 2’, cursive;
+font-size: 2rem; font-weight: 800; margin: 12px 0 6px;
+}
+.level-hero p { color: var(–muted); font-size: 0.95rem; }
+
+.courses-list { padding: 0 16px 40px; }
+.course-item {
+background: #fff;
+border-radius: 16px;
+padding: 18px;
+margin-bottom: 14px;
+box-shadow: var(–shadow);
+cursor: pointer;
+display: flex; align-items: center; gap: 14px;
+transition: transform 0.2s;
+border: 2px solid transparent;
+}
+.course-item:hover { transform: translateX(4px); border-color: var(–primary); }
+.course-item.locked { opacity: 0.7; cursor: default; }
+.course-item.locked:hover { transform: none; border-color: transparent; }
+.course-num {
+width: 44px; height: 44px; border-radius: 12px;
+display: flex; align-items: center; justify-content: center;
+font-family: ‘Baloo 2’, cursive; font-weight: 800; font-size: 1.1rem;
+flex-shrink: 0;
+}
+.course-info { flex: 1; }
+.course-item-title { font-weight: 800; font-size: 0.95rem; margin-bottom: 3px; }
+.course-item-sub { font-size: 0.78rem; color: var(–muted); }
+.course-badge {
+font-size: 0.7rem; font-weight: 700; padding: 3px 10px;
+border-radius: 50px; flex-shrink: 0;
+}
+.badge-free { background: #E6FFF0; color: #2D8A4E; }
+.badge-lock { background: #FFE6EC; color: #A8284A; }
+
+/* Lesson view */
+.lesson-container { padding: 0 0 60px; }
+.lesson-header {
+padding: 20px;
+background: linear-gradient(135deg, #fff, var(–bg));
+border-bottom: 2px solid #EEE8FF;
+}
+.lesson-header h3 {
+font-family: ‘Baloo 2’, cursive;
+font-size: 1.5rem; font-weight: 800; margin: 8px 0 4px;
+}
+.lesson-header p { color: var(–muted); font-size: 0.85rem; }
+.lesson-content { padding: 24px 20px; }
+.lesson-section {
+margin-bottom: 28px;
+}
+.lesson-section h4 {
+font-family: ‘Baloo 2’, cursive;
+font-size: 1.15rem; font-weight: 800;
+margin-bottom: 10px; color: var(–primary);
+}
+.lesson-section p {
+font-size: 0.95rem; line-height: 1.7; color: var(–text);
+margin-bottom: 10px;
+}
+.lesson-section ul { padding-left: 20px; }
+.lesson-section ul li {
+font-size: 0.95rem; line-height: 1.7; margin-bottom: 6px;
+}
+
+/* Illustration box */
+.illustration {
+background: linear-gradient(135deg, #F0EBFF, #FFF4E6);
+border-radius: 16px; padding: 24px;
+margin: 16px 0; text-align: center;
+border: 2px dashed #D4C5FF;
+}
+.illustration svg { max-width: 100%; height: auto; }
+
+/* Example box */
+.example-box {
+background: #FFF8E7; border-radius: 14px;
+border-left: 4px solid var(–accent);
+padding: 16px 18px; margin: 12px 0;
+}
+.example-box .ex-label {
+font-size: 0.75rem; font-weight: 800; color: #C49A00;
+text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;
+}
+.example-box p { font-size: 0.95rem; }
+
+/* Tip box */
+.tip-box {
+background: #E6FFFB; border-radius: 14px;
+border-left: 4px solid var(–secondary);
+padding: 16px 18px; margin: 12px 0;
+display: flex; gap: 10px; align-items: flex-start;
+}
+.tip-box .tip-icon { font-size: 1.4rem; flex-shrink: 0; }
+.tip-box p { font-size: 0.9rem; color: var(–text); }
+
+/* Math display */
+.math-display {
+background: var(–dark); color: var(–accent);
+border-radius: 12px; padding: 16px 20px;
+font-family: ‘Baloo 2’, cursive;
+font-size: 1.4rem; font-weight: 700;
+text-align: center; margin: 14px 0;
+letter-spacing: 0.05em;
+}
+
+/* QUIZ */
+.quiz-section {
+background: linear-gradient(135deg, var(–dark), #2D1B69);
+margin: 0; padding: 28px 20px;
+border-radius: 20px 20px 0 0;
+}
+.quiz-title {
+font-family: ‘Baloo 2’, cursive;
+font-size: 1.4rem; font-weight: 800; color: #fff;
+margin-bottom: 6px;
+}
+.quiz-subtitle { color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-bottom: 24px; }
+.quiz-question {
+background: rgba(255,255,255,0.08); border-radius: 14px;
+padding: 18px; margin-bottom: 16px;
+}
+.q-num {
+font-size: 0.72rem; font-weight: 800; color: var(–accent);
+text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;
+}
+.q-text { color: #fff; font-size: 0.97rem; font-weight: 700; margin-bottom: 14px; }
+.q-options { display: flex; flex-direction: column; gap: 8px; }
+.q-option {
+background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.15);
+border-radius: 10px; padding: 12px 16px;
+color: rgba(255,255,255,0.9); font-size: 0.9rem; font-weight: 600;
+cursor: pointer; transition: all 0.2s;
+text-align: left;
+}
+.q-option:hover { background: rgba(255,255,255,0.18); border-color: var(–secondary); }
+.q-option.correct { background: rgba(107,203,119,0.25); border-color: var(–green); color: #fff; }
+.q-option.wrong { background: rgba(255,107,107,0.25); border-color: #FF6B6B; color: #fff; }
+.q-option.disabled { pointer-events: none; }
+.q-feedback {
+margin-top: 10px; padding: 10px 14px; border-radius: 10px;
+font-size: 0.85rem; font-weight: 700; display: none;
+}
+.q-feedback.show { display: block; }
+.q-feedback.correct { background: rgba(107,203,119,0.2); color: #6BCB77; }
+.q-feedback.wrong { background: rgba(255,107,107,0.2); color: #FF6B6B; }
+.quiz-submit {
+width: 100%; padding: 16px;
+background: linear-gradient(135deg, var(–primary), #FF8C42);
+color: #fff; border: none; border-radius: 50px;
+font-family: ‘Nunito’, sans-serif; font-weight: 800; font-size: 1rem;
+cursor: pointer; margin-top: 8px;
+box-shadow: 0 4px 20px rgba(255,107,53,0.4);
+}
+.quiz-result {
+display: none; text-align: center; padding: 20px 0;
+}
+.quiz-result.show { display: block; }
+.result-emoji { font-size: 4rem; margin-bottom: 8px; }
+.result-score {
+font-family: ‘Baloo 2’, cursive;
+font-size: 2rem; font-weight: 800; color: var(–accent);
+}
+.result-text { color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-top: 6px; }
+.result-btn {
+margin-top: 16px; padding: 12px 28px;
+background: var(–secondary); color: var(–dark);
+border: none; border-radius: 50px;
+font-family: ‘Nunito’, sans-serif; font-weight: 800; font-size: 0.95rem;
+cursor: pointer;
+}
+
+/* Paywall modal */
+.modal-overlay {
+display: none; position: fixed; inset: 0;
+background: rgba(0,0,0,0.6); z-index: 200;
+align-items: flex-end; justify-content: center;
+}
+.modal-overlay.show { display: flex; }
+.modal-sheet {
+background: #fff; border-radius: 28px 28px 0 0;
+padding: 32px 24px 48px;
+width: 100%; max-width: 480px;
+animation: slideUp 0.35s cubic-bezier(.25,.8,.25,1);
+}
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+.modal-handle {
+width: 40px; height: 4px; background: #E0E0E0;
+border-radius: 2px; margin: 0 auto 24px;
+}
+.modal-icon { text-align: center; font-size: 3.5rem; margin-bottom: 12px; }
+.modal-title {
+font-family: ‘Baloo 2’, cursive;
+font-size: 1.5rem; font-weight: 800; text-align: center; margin-bottom: 8px;
+}
+.modal-desc { text-align: center; color: var(–muted); font-size: 0.9rem; margin-bottom: 24px; line-height: 1.6; }
+.modal-perks { margin-bottom: 24px; }
+.perk {
+display: flex; align-items: center; gap: 10px;
+padding: 10px 0; border-bottom: 1px solid #F0F0F0;
+font-size: 0.9rem; font-weight: 600;
+}
+.perk:last-child { border-bottom: none; }
+.perk-icon { font-size: 1.3rem; }
+.modal-price {
+background: linear-gradient(135deg, #F0EBFF, #FFF4E6);
+border-radius: 16px; padding: 18px; text-align: center; margin-bottom: 20px;
+}
+.modal-price .old-price {
+font-size: 0.85rem; color: var(–muted); text-decoration: line-through;
+}
+.modal-price .new-price {
+font-family: ‘Baloo 2’, cursive;
+font-size: 2.2rem; font-weight: 800; color: var(–primary);
+}
+.modal-price .per { font-size: 0.8rem; color: var(–muted); }
+.modal-price .trial {
+background: var(–green); color: #fff;
+border-radius: 50px; padding: 4px 14px;
+font-size: 0.8rem; font-weight: 700; display: inline-block; margin-top: 8px;
+}
+.modal-cta {
+width: 100%; padding: 18px;
+background: linear-gradient(135deg, var(–primary), #FF8C42);
+color: #fff; border: none; border-radius: 50px;
+font-family: ‘Nunito’, sans-serif; font-weight: 800; font-size: 1.05rem;
+cursor: pointer; box-shadow: 0 4px 20px rgba(255,107,53,0.4);
+margin-bottom: 12px;
+}
+.modal-cancel {
+width: 100%; padding: 14px;
+background: none; border: 2px solid #E0E0E0;
+border-radius: 50px; color: var(–muted);
+font-family: ‘Nunito’, sans-serif; font-weight: 700; font-size: 0.9rem;
+cursor: pointer;
+}
+
+/* Progress bar */
+.progress-bar-wrap {
+background: #EEE8FF; border-radius: 50px; height: 8px; margin: 10px 0;
+}
+.progress-bar-fill {
+background: linear-gradient(90deg, var(–primary), var(–purple));
+border-radius: 50px; height: 100%;
+transition: width 0.5s;
+}
+
+/* Toast notification */
+.toast {
+position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+background: var(–dark); color: #fff;
+padding: 12px 24px; border-radius: 50px;
+font-size: 0.9rem; font-weight: 700;
+z-index: 300; opacity: 0;
+transition: opacity 0.3s;
+white-space: nowrap;
+}
+.toast.show { opacity: 1; }
+
+/* Plan tabs */
+.plan-tab {
+flex: 1; border: 2px solid #E0E0E0; border-radius: 14px;
+padding: 12px 6px; text-align: center; cursor: pointer;
+transition: all 0.2s; position: relative;
+}
+.plan-tab.active { border-color: var(–primary); background: #FFF4F0; }
+.plan-tab-name { font-size: 0.7rem; font-weight: 800; color: var(–muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+.plan-tab.active .plan-tab-name { color: var(–primary); }
+.plan-tab-price { font-family: ‘Baloo 2’, cursive; font-size: 1.1rem; font-weight: 800; color: var(–dark); }
+.plan-tab-price span { font-size: 0.65rem; font-weight: 600; color: var(–muted); }
+.plan-tab.active .plan-tab-price { color: var(–primary); }
+
+/* Trial countdown */
+.trial-bar {
+background: linear-gradient(90deg, var(–secondary), var(–purple));
+color: #fff; text-align: center;
+padding: 10px 16px; font-size: 0.82rem; font-weight: 700;
+}
+</style>
+
+</head>
+<body>
+
+<!-- TRIAL BAR -->
+
+<div class="trial-bar">🎁 Essai gratuit 7 jours — Plus que <span id="trialDays">7</span> jours restants !</div>
+
+<!-- NAV -->
+
+<nav>
+  <div class="nav-logo">Math<span>✨</span>Magique</div>
+  <button class="nav-btn" onclick="showPaywall()">Accès illimité</button>
+</nav>
+
+<!-- HOME PAGE -->
+
+<div id="homePage" class="home-page">
+
+  <!-- HERO -->
+
+  <section class="hero">
+    <div class="hero-badge">✨ Du CP à la Terminale</div>
+    <h1>Les maths,<br><span>c'est magique !</span></h1>
+    <p>Des cours clairs, ludiques et progressifs créés par des professeurs pour tous les niveaux scolaires.</p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="scrollToLevels()">Choisir mon niveau 🚀</button>
+      <button class="btn-secondary" onclick="showPaywall()">1 semaine offerte</button>
+    </div>
+
+```
+<!-- Hero SVG illustration -->
+<div style="margin-top: 32px;">
+  <svg viewBox="0 0 320 160" style="max-width:320px;margin:0 auto;display:block;" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background circles -->
+    <circle cx="40" cy="40" r="30" fill="#FFE66D" opacity="0.3"/>
+    <circle cx="280" cy="120" r="25" fill="#4ECDC4" opacity="0.3"/>
+    <circle cx="160" cy="20" r="18" fill="#A78BFA" opacity="0.25"/>
+    <!-- Chalkboard -->
+    <rect x="60" y="30" width="200" height="110" rx="12" fill="#1A1A2E"/>
+    <rect x="68" y="38" width="184" height="94" rx="8" fill="#243042"/>
+    <!-- Math symbols on board -->
+    <text x="85" y="75" font-family="Georgia" font-size="22" fill="#FFE66D" font-weight="bold">2x²+3=</text>
+    <text x="85" y="105" font-family="Georgia" font-size="22" fill="#4ECDC4" font-weight="bold">∫f(x)dx</text>
+    <text x="230" y="85" font-family="Georgia" font-size="26" fill="#FF6B35" font-weight="bold">π</text>
+    <!-- Stars -->
+    <text x="10" y="90" font-size="20">⭐</text>
+    <text x="290" y="50" font-size="18">✨</text>
+    <text x="20" y="140" font-size="16">🎯</text>
+  </svg>
+</div>
+```
+
+  </section>
+
+  <!-- STATS -->
+
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-num">14</div>
+      <div class="stat-label">Niveaux</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">70+</div>
+      <div class="stat-label">Cours</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">350+</div>
+      <div class="stat-label">Exercices</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4,99€</div>
+      <div class="stat-label">/ mois</div>
+    </div>
+  </div>
+
+  <!-- PRICING BANNER -->
+
+  <div class="pricing-banner">
+    <h2>📚 5 cours offerts, tout le reste débloqué !</h2>
+    <p>Commence gratuitement. Choisis la formule qui te convient.</p>
+    <div style="margin-bottom:16px;">
+      <div class="free-badge">🎁 7 jours d'essai gratuit — sans carte bancaire</div>
+    </div>
+
+```
+<!-- 3 pricing cards -->
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;">
+  <div style="background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.2);border-radius:14px;padding:14px 8px;cursor:pointer;" onclick="showPaywall('monthly')">
+    <div style="font-size:0.65rem;font-weight:800;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">Mensuel</div>
+    <div style="font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:800;color:#FFE66D;">4,99€</div>
+    <div style="font-size:0.65rem;color:rgba(255,255,255,0.6);">/ mois</div>
+  </div>
+  <div style="background:linear-gradient(135deg,rgba(255,107,53,0.3),rgba(167,139,250,0.3));border:2px solid #FF6B35;border-radius:14px;padding:14px 8px;cursor:pointer;position:relative;" onclick="showPaywall('yearly')">
+    <div style="position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:#FF6B35;color:#fff;font-size:0.6rem;font-weight:800;padding:2px 8px;border-radius:50px;white-space:nowrap;">⭐ POPULAIRE</div>
+    <div style="font-size:0.65rem;font-weight:800;color:rgba(255,255,255,0.8);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">Annuel</div>
+    <div style="font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:800;color:#FFE66D;">19,99€</div>
+    <div style="font-size:0.65rem;color:rgba(255,255,255,0.7);">/ an · −67%</div>
+  </div>
+  <div style="background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.2);border-radius:14px;padding:14px 8px;cursor:pointer;" onclick="showPaywall('lifetime')">
+    <div style="font-size:0.65rem;font-weight:800;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">À vie</div>
+    <div style="font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:800;color:#FFE66D;">29,99€</div>
+    <div style="font-size:0.65rem;color:rgba(255,255,255,0.6);">une fois</div>
+  </div>
+</div>
+
+<button class="btn-primary" onclick="showPaywall('yearly')">Commencer l'essai gratuit 🚀</button>
+```
+
+  </div>
+
+  <!-- LEVELS -->
+
+  <section class="levels-section" id="levelsSection">
+    <h2 class="section-title">📖 Choisis ton niveau</h2>
+    <p class="section-sub">Du primaire au lycée, tout est là.</p>
+    <div class="levels-grid">
+
+```
+  <!-- PRIMAIRE -->
+  <div class="level-card primaire" onclick="openLevel('cp')">
+    <div class="level-free-count">5 gratuits</div>
+    <div class="level-emoji">🌱</div>
+    <div class="level-name">CP</div>
+    <div class="level-sub">6-7 ans</div>
+    <span class="level-pill pill-green">Primaire</span>
+  </div>
+  <div class="level-card primaire" onclick="openLevel('ce1')">
+    <div class="level-free-count">5 gratuits</div>
+    <div class="level-emoji">🌻</div>
+    <div class="level-name">CE1</div>
+    <div class="level-sub">7-8 ans</div>
+    <span class="level-pill pill-green">Primaire</span>
+  </div>
+  <div class="level-card primaire" onclick="openLevel('ce2')">
+    <div class="level-free-count">5 gratuits</div>
+    <div class="level-emoji">🦋</div>
+    <div class="level-name">CE2</div>
+    <div class="level-sub">8-9 ans</div>
+    <span class="level-pill pill-green">Primaire</span>
+  </div>
+  <div class="level-card primaire" onclick="openLevel('cm1')">
+    <div class="level-free-count">5 gratuits</div>
+    <div class="level-emoji">🚀</div>
+    <div class="level-name">CM1</div>
+    <div class="level-sub">9-10 ans</div>
+    <span class="level-pill pill-green">Primaire</span>
+  </div>
+  <div class="level-card primaire" onclick="openLevel('cm2')">
+    <div class="level-free-count">5 gratuits</div>
+    <div class="level-emoji">🦁</div>
+    <div class="level-name">CM2</div>
+    <div class="level-sub">10-11 ans</div>
+    <span class="level-pill pill-green">Primaire</span>
+  </div>
+
+  <!-- COLLÈGE -->
+  <div class="level-card college" onclick="openLevel('6eme')">
+    <div class="level-free-count">5 gratuits</div>
+    <div class="level-emoji">🔭</div>
+    <div class="level-name">6ème</div>
+    <div class="level-sub">11-12 ans</div>
+    <span class="level-pill pill-blue">Collège</span>
+  </div>
+  <div class="level-card college" onclick="openLevel('5eme')">
+    <div class="level-free-count">5 gratuits</div>
+    <div class="level-emoji">🧪</div>
+    <div class="level-name">5ème</div>
+    <div class="level-sub">12-13 ans</div>
+    <span class="level-pill pill-blue">Collège</span>
+  </div>
+  <div class="level-card college" onclick="openLevel('4eme')">
+    <div class="level-free-count">5 gratuits</div>
+    <div class="level-emoji">⚡</div>
+    <div class="level-name">4ème</div>
+    <div class="level-sub">13-14 ans</div>
+    <span class="level-pill pill-blue">Collège</span>
+  </div>
+  <div class="level-card college" onclick="openLevel('3eme')">
+    <div class="level-free-count">5 gratuits</div>
+    <div class="level-emoji">🏆</div>
+    <div class="level-name">3ème</div>
+    <div class="level-sub">14-15 ans</div>
+    <span class="level-pill pill-blue">Collège</span>
+  </div>
+
+  <!-- LYCÉE -->
+  <div class="level-card lycee" onclick="openLevel('seconde')">
+    <div class="level-free-count">5 gratuits</div>
+    <div class="level-emoji">🌟</div>
+    <div class="level-name">Seconde</div>
+    <div class="level-sub">15-16 ans</div>
+    <span class="level-pill pill-pink">Lycée</span>
+  </div>
+  <div class="level-card lycee" onclick="openLevel('premiere')">
+    <div class="level-free-count">5 gratuits</div>
+    <div class="level-emoji">🔥</div>
+    <div class="level-name">Première</div>
+    <div class="level-sub">16-17 ans</div>
+    <span class="level-pill pill-pink">Lycée</span>
+  </div>
+  <div class="level-card lycee" onclick="openLevel('terminale')">
+    <div class="level-free-count">5 gratuits</div>
+    <div class="level-emoji">🎓</div>
+    <div class="level-name">Terminale</div>
+    <div class="level-sub">17-18 ans</div>
+    <span class="level-pill pill-pink">Lycée</span>
+  </div>
+
+</div>
+```
+
+  </section>
+
+  <!-- FEATURES -->
+
+  <section class="features-section">
+    <h2 class="section-title">Pourquoi MathMagique ?</h2>
+    <p class="section-sub">Tout ce qu'il faut pour progresser.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-title">Quiz interactifs</div>
+        <div class="feature-desc">Teste tes connaissances après chaque cours avec des questions adaptées.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <div class="feature-title">Cours illustrés</div>
+        <div class="feature-desc">Des schémas et illustrations pour visualiser chaque concept.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <div class="feature-title">Mobile first</div>
+        <div class="feature-desc">Conçu pour apprendre partout, depuis ton téléphone.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <div class="feature-title">Progressif</div>
+        <div class="feature-desc">Du plus simple au plus avancé, à ton rythme.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <div class="footer-logo">MathMagique ✨</div>
+    <p>Créé avec ❤️ pour tous les élèves de France</p>
+    <p style="margin-top:8px;"><a href="#">CGV</a> · <a href="#">Confidentialité</a> · <a href="#">Contact</a></p>
+    <p style="margin-top:16px;font-size:0.75rem;opacity:0.5;">© 2024 MathMagique — Tous droits réservés</p>
+  </footer>
+
+</div><!-- end homePage -->
+
+<!-- LEVEL PAGE -->
+
+<div id="levelPage" class="course-page">
+  <button class="back-btn" onclick="goHome()">← Retour</button>
+  <div class="level-hero">
+    <div id="levelEmoji" style="font-size:3rem;"></div>
+    <h2 id="levelTitle"></h2>
+    <p id="levelDesc"></p>
+    <div style="margin-top:14px;">
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="levelProgress" style="width:0%"></div></div>
+      <p style="font-size:0.75rem;color:var(--muted);margin-top:4px;" id="progressLabel"></p>
+    </div>
+  </div>
+  <div class="courses-list" id="coursesList"></div>
+</div>
+
+<!-- LESSON PAGE -->
+
+<div id="lessonPage" class="course-page">
+  <button class="back-btn" id="lessonBack">← Retour aux cours</button>
+  <div class="lesson-container" id="lessonContent"></div>
+</div>
+
+<!-- PAYWALL MODAL -->
+
+<div class="modal-overlay" id="paywallModal" onclick="closePaywallOutside(event)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-icon">🚀</div>
+    <div class="modal-title">Débloque tout !</div>
+    <div class="modal-desc">70+ cours, tous les niveaux CP → Terminale. Choisis ta formule.</div>
+
+```
+<!-- Plan selector -->
+<div style="display:flex;gap:8px;margin-bottom:20px;" id="planSelector">
+  <div class="plan-tab" id="tab_monthly" onclick="selectPlan('monthly')">
+    <div class="plan-tab-name">Mensuel</div>
+    <div class="plan-tab-price">4,99€<span>/mois</span></div>
+  </div>
+  <div class="plan-tab active" id="tab_yearly" onclick="selectPlan('yearly')">
+    <div style="position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:var(--primary);color:#fff;font-size:0.6rem;font-weight:800;padding:2px 10px;border-radius:50px;white-space:nowrap;">⭐ POPULAIRE</div>
+    <div class="plan-tab-name">Annuel</div>
+    <div class="plan-tab-price">19,99€<span>/an</span></div>
+    <div style="font-size:0.65rem;color:var(--green);font-weight:800;">−67% 🎉</div>
+  </div>
+  <div class="plan-tab" id="tab_lifetime" onclick="selectPlan('lifetime')">
+    <div class="plan-tab-name">À vie</div>
+    <div class="plan-tab-price">29,99€<span></span></div>
+    <div style="font-size:0.65rem;color:var(--secondary);font-weight:800;">Une fois ✓</div>
+  </div>
+</div>
+
+<div class="modal-perks">
+  <div class="perk"><span class="perk-icon">✅</span> Tous les niveaux CP → Terminale</div>
+  <div class="perk"><span class="perk-icon">✅</span> 70+ cours complets avec quiz</div>
+  <div class="perk"><span class="perk-icon">✅</span> Nouvelles leçons chaque mois</div>
+  <div class="perk"><span class="perk-icon">✅</span> <span id="planPerkExtra">Économise 67% vs le mensuel</span></div>
+</div>
+
+<div class="modal-price">
+  <div class="old-price" id="modalOldPrice">Valeur réelle : 59,88€/an</div>
+  <div class="new-price" id="modalNewPrice">19,99€</div>
+  <div class="per" id="modalPer">par an · résiliable à tout moment</div>
+  <div class="trial">🎁 7 jours d'essai GRATUIT</div>
+</div>
+<button class="modal-cta" onclick="startTrial()">Commencer l'essai gratuit →</button>
+<button class="modal-cancel" onclick="closePaywall()">Plus tard</button>
+```
+
+  </div>
+</div>
+
+<!-- TOAST -->
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// DATA — all courses content
+// ============================================================
+const LEVELS = {
+  cp: {
+    emoji:'🌱', name:'CP', fullName:'Cours Préparatoire',
+    desc:'Les premières aventures mathématiques !',
+    color:'#6BCB77', bg:'#E6FFF0',
+    courses:[
+      { id:'cp1', title:'Compter jusqu\'à 10', sub:'Nombres et chiffres de base', free:true },
+      { id:'cp2', title:'Les formes géométriques', sub:'Cercle, carré, triangle...', free:true },
+      { id:'cp3', title:'Compter jusqu\'à 30', sub:'Progresser avec les nombres', free:true },
+      { id:'cp4', title:'L\'addition simple', sub:'Additionner des petits nombres', free:true },
+      { id:'cp5', title:'La soustraction simple', sub:'Enlever des quantités', free:true },
+      { id:'cp6', title:'Mesurer avec une règle', sub:'La longueur en cm', free:false },
+      { id:'cp7', title:'Les nombres jusqu\'à 100', sub:'Dizaines et unités', free:false },
+      { id:'cp8', title:'Comparer des nombres', sub:'Plus grand, plus petit...', free:false },
+    ]
+  },
+  ce1: {
+    emoji:'🌻', name:'CE1', fullName:'Cours Élémentaire 1',
+    desc:'On monte d\'un cran, c\'est parti !',
+    color:'#FFB347', bg:'#FFF4E6',
+    courses:[
+      { id:'ce1_1', title:'Les nombres jusqu\'à 100', sub:'Lire et écrire les grands nombres', free:true },
+      { id:'ce1_2', title:'Addition posée', sub:'Calcul en colonnes', free:true },
+      { id:'ce1_3', title:'Soustraction posée', sub:'Soustraire avec retenue', free:true },
+      { id:'ce1_4', title:'La monnaie', sub:'Euros et centimes', free:true },
+      { id:'ce1_5', title:'Les doubles et moitiés', sub:'Calcul rapide mental', free:true },
+      { id:'ce1_6', title:'Les mesures de longueur', sub:'m, cm, mm', free:false },
+      { id:'ce1_7', title:'Introduction à la multiplication', sub:'Les premières tables', free:false },
+      { id:'ce1_8', title:'Symétrie', sub:'Figures symétriques', free:false },
+    ]
+  },
+  ce2: {
+    emoji:'🦋', name:'CE2', fullName:'Cours Élémentaire 2',
+    desc:'Les tables de multiplication arrivent !',
+    color:'#4ECDC4', bg:'#E6FFFB',
+    courses:[
+      { id:'ce2_1', title:'Tables de x2, x3, x4', sub:'Apprendre les tables', free:true },
+      { id:'ce2_2', title:'Tables de x5 et x10', sub:'Tables faciles à retenir', free:true },
+      { id:'ce2_3', title:'Multiplication posée', sub:'Technique de calcul', free:true },
+      { id:'ce2_4', title:'Division simple', sub:'Partager en groupes égaux', free:true },
+      { id:'ce2_5', title:'Fractions simples', sub:'1/2, 1/4, 3/4', free:true },
+      { id:'ce2_6', title:'Périmètre d\'une figure', sub:'Calculer le tour', free:false },
+      { id:'ce2_7', title:'Angles droits', sub:'Reconnaître l\'angle droit', free:false },
+      { id:'ce2_8', title:'Problèmes du quotidien', sub:'Mises en situation', free:false },
+    ]
+  },
+  cm1: {
+    emoji:'🚀', name:'CM1', fullName:'Cours Moyen 1',
+    desc:'On entre dans les grands nombres !',
+    color:'#A78BFA', bg:'#F3E8FF',
+    courses:[
+      { id:'cm1_1', title:'Nombres jusqu\'à 1 000 000', sub:'Millions et milliers', free:true },
+      { id:'cm1_2', title:'Les fractions', sub:'Numérateur et dénominateur', free:true },
+      { id:'cm1_3', title:'Décimaux', sub:'Nombres à virgule', free:true },
+      { id:'cm1_4', title:'Les aires', sub:'Surface d\'une figure', free:true },
+      { id:'cm1_5', title:'Angles et triangles', sub:'Types d\'angles', free:true },
+      { id:'cm1_6', title:'Proportionnalité', sub:'Règle de trois simple', free:false },
+      { id:'cm1_7', title:'Durées et horaires', sub:'Calcul du temps', free:false },
+      { id:'cm1_8', title:'Graphiques', sub:'Lire un diagramme', free:false },
+    ]
+  },
+  cm2: {
+    emoji:'🦁', name:'CM2', fullName:'Cours Moyen 2',
+    desc:'La dernière ligne droite du primaire !',
+    color:'#FF6B35', bg:'#FFF0EB',
+    courses:[
+      { id:'cm2_1', title:'Fractions et décimaux', sub:'Convertir et comparer', free:true },
+      { id:'cm2_2', title:'Pourcentages', sub:'Introduction aux %', free:true },
+      { id:'cm2_3', title:'Division euclidienne', sub:'Quotient et reste', free:true },
+      { id:'cm2_4', title:'Volumes simples', sub:'Cube et pavé droit', free:true },
+      { id:'cm2_5', title:'Statistiques simples', sub:'Moyenne et médiane', free:true },
+      { id:'cm2_6', title:'Puissances de 10', sub:'10², 10³...', free:false },
+      { id:'cm2_7', title:'Coordonnées', sub:'Repère cartésien', free:false },
+      { id:'cm2_8', title:'Problèmes complexes', sub:'Raisonnement et logique', free:false },
+    ]
+  },
+  '6eme': {
+    emoji:'🔭', name:'6ème', fullName:'Sixième',
+    desc:'Bienvenue au collège, les maths deviennent sérieuses !',
+    color:'#38BDF8', bg:'#E0F2FE',
+    courses:[
+      { id:'6e_1', title:'Nombres entiers et décimaux', sub:'Consolidation des bases', free:true },
+      { id:'6e_2', title:'Fractions', sub:'Opérations sur les fractions', free:true },
+      { id:'6e_3', title:'Géométrie plane', sub:'Droites, angles, triangles', free:true },
+      { id:'6e_4', title:'Périmètre et aire', sub:'Formules essentielles', free:true },
+      { id:'6e_5', title:'Introduction aux statistiques', sub:'Tableaux et graphiques', free:true },
+      { id:'6e_6', title:'Symétrie axiale', sub:'Axes de symétrie', free:false },
+      { id:'6e_7', title:'Proportionnalité', sub:'Tableaux de proportionnalité', free:false },
+      { id:'6e_8', title:'Prismes et cylindres', sub:'Solides géométriques', free:false },
+    ]
+  },
+  '5eme': {
+    emoji:'🧪', name:'5ème', fullName:'Cinquième',
+    desc:'Nombres relatifs et géométrie avancée !',
+    color:'#34D399', bg:'#D1FAE5',
+    courses:[
+      { id:'5e_1', title:'Nombres relatifs', sub:'Négatifs et positifs', free:true },
+      { id:'5e_2', title:'Calcul littéral', sub:'Lettres dans les calculs', free:true },
+      { id:'5e_3', title:'Équations simples', sub:'Trouver l\'inconnue', free:true },
+      { id:'5e_4', title:'Triangles : propriétés', sub:'Théorème de Pythagore intro', free:true },
+      { id:'5e_5', title:'Rapports et proportions', sub:'Échelles et agrandissements', free:true },
+      { id:'5e_6', title:'Probabilités', sub:'Chances et événements', free:false },
+      { id:'5e_7', title:'Volumes : pyramides', sub:'Formules de volume', free:false },
+      { id:'5e_8', title:'Fonctions numériques', sub:'Introduction aux fonctions', free:false },
+    ]
+  },
+  '4eme': {
+    emoji:'⚡', name:'4ème', fullName:'Quatrième',
+    desc:'Pythagore, identités et algèbre !',
+    color:'#FBBF24', bg:'#FEF3C7',
+    courses:[
+      { id:'4e_1', title:'Théorème de Pythagore', sub:'Triangles rectangles', free:true },
+      { id:'4e_2', title:'Identités remarquables', sub:'(a+b)², (a-b)², etc.', free:true },
+      { id:'4e_3', title:'Systèmes d\'équations', sub:'Deux inconnues', free:true },
+      { id:'4e_4', title:'Fonctions linéaires', sub:'y = ax', free:true },
+      { id:'4e_5', title:'Statistiques avancées', sub:'Moyenne pondérée, diagrammes', free:true },
+      { id:'4e_6', title:'Inéquations', sub:'<, >, ≤, ≥', free:false },
+      { id:'4e_7', title:'Cercle et angles inscrits', sub:'Propriétés du cercle', free:false },
+      { id:'4e_8', title:'Trigonométrie initiale', sub:'sin, cos, tan', free:false },
+    ]
+  },
+  '3eme': {
+    emoji:'🏆', name:'3ème', fullName:'Troisième',
+    desc:'La prépa du Brevet, on fonce !',
+    color:'#F472B6', bg:'#FCE7F3',
+    courses:[
+      { id:'3e_1', title:'Puissances et racines', sub:'Exposants et √', free:true },
+      { id:'3e_2', title:'Développement / Factorisation', sub:'Techniques algébriques', free:true },
+      { id:'3e_3', title:'Fonctions affines', sub:'y = ax + b, représentation', free:true },
+      { id:'3e_4', title:'Théorème de Thalès', sub:'Triangles semblables', free:true },
+      { id:'3e_5', title:'Probabilités avancées', sub:'Arbres de probabilité', free:true },
+      { id:'3e_6', title:'Géométrie dans l\'espace', sub:'Sphères, cônes, cylindres', free:false },
+      { id:'3e_7', title:'Calcul numérique', sub:'Relatifs, fractions, puissances', free:false },
+      { id:'3e_8', title:'Révisions Brevet', sub:'Annales et méthodes', free:false },
+    ]
+  },
+  seconde: {
+    emoji:'🌟', name:'Seconde', fullName:'Seconde Générale',
+    desc:'Le lycée commence : fonctions et géométrie avancée !',
+    color:'#60A5FA', bg:'#EFF6FF',
+    courses:[
+      { id:'sec_1', title:'Fonctions : généralités', sub:'Domaine, image, antécédent', free:true },
+      { id:'sec_2', title:'Fonction affine et droites', sub:'Pente, ordonnée à l\'origine', free:true },
+      { id:'sec_3', title:'Équations et inéquations', sub:'Résolution algébrique', free:true },
+      { id:'sec_4', title:'Statistiques et médiane', sub:'Quartiles, boîtes à moustaches', free:true },
+      { id:'sec_5', title:'Trigonométrie dans le cercle', sub:'Cos, sin sur le cercle unité', free:true },
+      { id:'sec_6', title:'Vecteurs', sub:'Définition et opérations', free:false },
+      { id:'sec_7', title:'Géométrie analytique', sub:'Coordonnées et distances', free:false },
+      { id:'sec_8', title:'Probabilités : cours complet', sub:'Loi des grands nombres', free:false },
+    ]
+  },
+  premiere: {
+    emoji:'🔥', name:'Première', fullName:'Première Générale',
+    desc:'Dérivées, suites et géométrie dans l\'espace !',
+    color:'#F87171', bg:'#FEF2F2',
+    courses:[
+      { id:'pre_1', title:'Dérivation', sub:'Définition et règles de calcul', free:true },
+      { id:'pre_2', title:'Suites numériques', sub:'Arithmétiques et géométriques', free:true },
+      { id:'pre_3', title:'Logarithme népérien', sub:'ln(x) : définition et propriétés', free:true },
+      { id:'pre_4', title:'Fonctions exponentielles', sub:'eˣ et ses propriétés', free:true },
+      { id:'pre_5', title:'Probabilités conditionnelles', sub:'P(A|B) et indépendance', free:true },
+      { id:'pre_6', title:'Géométrie dans l\'espace', sub:'Plans, droites, vecteurs 3D', free:false },
+      { id:'pre_7', title:'Produit scalaire', sub:'Définition et applications', free:false },
+      { id:'pre_8', title:'Étude complète de fonctions', sub:'Variations, extrema', free:false },
+    ]
+  },
+  terminale: {
+    emoji:'🎓', name:'Terminale', fullName:'Terminale Générale',
+    desc:'La dernière étape avant le bac ! On maîtrise tout.',
+    color:'#8B5CF6', bg:'#F5F3FF',
+    courses:[
+      { id:'ter_1', title:'Intégration', sub:'Primitives et intégrales', free:true },
+      { id:'ter_2', title:'Limites et continuité', sub:'Théorèmes de limites', free:true },
+      { id:'ter_3', title:'Équations différentielles', sub:'y\' = ay, résolution', free:true },
+      { id:'ter_4', title:'Loi binomiale', sub:'Paramètres et calculs', free:true },
+      { id:'ter_5', title:'Loi normale', sub:'Courbe de Gauss et IC', free:true },
+      { id:'ter_6', title:'Calcul matriciel', sub:'Opérations et applications', free:false },
+      { id:'ter_7', title:'Suites : convergence', sub:'Critères et démonstrations', free:false },
+      { id:'ter_8', title:'Révisions Bac complètes', sub:'Tous les types d\'exercices', free:false },
+    ]
+  }
+};
+
+// ============================================================
+// LESSON CONTENT GENERATOR
+// ============================================================
+const LESSON_CONTENT = {
+  cp1: {
+    title:'Compter jusqu\'à 10 🔢',
+    intro:'Bonjour ! Aujourd\'hui on apprend à compter jusqu\'à 10. C\'est la base de toutes les maths !',
+    sections:[
+      {
+        heading:'Les chiffres de 0 à 10',
+        content:'Les chiffres sont comme les lettres de l\'alphabet des maths. On en a 10 principaux (0 à 9) et avec eux on peut faire tous les nombres du monde !',
+        illustration: `<svg viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+          ${[0,1,2,3,4,5,6,7,8,9,10].map((n,i)=>`
+            <circle cx="${15+i*27}" cy="50" r="12" fill="${['#FF6B35','#FFE66D','#4ECDC4','#A78BFA','#6BCB77','#FF6B35','#FFE66D','#4ECDC4','#A78BFA','#6BCB77','#FF6B35'][i]}" opacity="0.85"/>
+            <text x="${15+i*27}" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="white" font-family="Baloo 2">${n}</text>
+          `).join('')}
+        </svg>`,
+        example:'Imagine 3 pommes 🍎🍎🍎 — tu vois 3 objets, donc le chiffre est 3 !',
+        tip:'Astuce : utilise tes doigts pour compter. 1 doigt = 1, 5 doigts = 5, les 2 mains = 10 !'
+      },
+      {
+        heading:'Compter avec des objets',
+        content:'Pour compter, on pointe chaque objet une seule fois en disant son numéro à voix haute.',
+        illustration: `<svg viewBox="0 0 280 80" xmlns="http://www.w3.org/2000/svg">
+          ${[...Array(7)].map((_,i)=>`
+            <circle cx="${20+i*38}" cy="40" r="16" fill="#FFE66D" stroke="#FF6B35" stroke-width="2"/>
+            <text x="${20+i*38}" y="46" text-anchor="middle" font-size="18" font-family="Arial">${['🍎','🍋','🍇','🍊','🍓','🫐','🍑'][i]}</text>
+          `).join('')}
+        </svg>`,
+        example:'Compte les fruits ci-dessus : 1... 2... 3... 4... 5... 6... 7 fruits !',
+        tip:'Ne compte jamais le même objet deux fois !'
+      }
+    ],
+    quiz:[
+      { q:'Quel nombre vient après 5 ?', opts:['4','6','7','3'], answer:1 },
+      { q:'Combien de doigts as-tu sur une main ?', opts:['4','6','5','3'], answer:2 },
+      { q:'Quel est le plus grand chiffre qu\'on utilise seul ?', opts:['8','10','9','7'], answer:2 },
+      { q:'Quel nombre vient avant 3 ?', opts:['4','1','2','5'], answer:2 },
+      { q:'Combien font 2 + 3 ?', opts:['4','6','5','3'], answer:2 },
+    ]
+  },
+  cp2: {
+    title:'Les formes géométriques 🔷',
+    intro:'Les formes sont partout autour de toi ! La pizza est un cercle, ta tablette est un rectangle. Apprends à les reconnaître !',
+    sections:[
+      {
+        heading:'Les formes principales',
+        content:'En géométrie, on commence par 4 formes de base : le cercle, le carré, le rectangle et le triangle.',
+        illustration: `<svg viewBox="0 0 280 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="35" cy="50" r="28" fill="#FF6B35" opacity="0.8"/>
+          <text x="35" y="80" text-anchor="middle" font-size="10" fill="#FF6B35" font-weight="bold" font-family="Nunito">Cercle</text>
+          <rect x="75" y="22" width="56" height="56" rx="4" fill="#FFE66D" opacity="0.8"/>
+          <text x="103" y="90" text-anchor="middle" font-size="10" fill="#C4A000" font-weight="bold" font-family="Nunito">Carré</text>
+          <rect x="145" y="30" width="74" height="40" rx="4" fill="#4ECDC4" opacity="0.8"/>
+          <text x="182" y="85" text-anchor="middle" font-size="10" fill="#007A73" font-weight="bold" font-family="Nunito">Rectangle</text>
+          <polygon points="250,22 278,78 222,78" fill="#A78BFA" opacity="0.8"/>
+          <text x="250" y="92" text-anchor="middle" font-size="10" fill="#6B34D8" font-weight="bold" font-family="Nunito">Triangle</text>
+        </svg>`,
+        example:'Le soleil est rond comme un cercle. Une porte est un rectangle. Un panneau attention est un triangle !',
+        tip:'Pour savoir si c\'est un carré, vérifie que tous les côtés sont pareils !'
+      }
+    ],
+    quiz:[
+      { q:'Quelle forme n\'a pas de côtés ?', opts:['Carré','Triangle','Cercle','Rectangle'], answer:2 },
+      { q:'Combien de côtés a un triangle ?', opts:['2','4','3','5'], answer:2 },
+      { q:'Quelle forme a tous les côtés égaux ?', opts:['Rectangle','Triangle','Cercle','Carré'], answer:3 },
+      { q:'La roue d\'un vélo ressemble à quoi ?', opts:['Carré','Triangle','Cercle','Rectangle'], answer:2 },
+      { q:'Combien de coins a un rectangle ?', opts:['3','2','4','6'], answer:2 },
+    ]
+  },
+  ter_1: {
+    title:'L\'intégration — Primitives et intégrales 📐',
+    intro:'L\'intégration est l\'opération inverse de la dérivation. Elle permet de calculer des aires sous des courbes et résoudre des équations différentielles.',
+    sections:[
+      {
+        heading:'La primitive d\'une fonction',
+        content:'Une primitive de f est une fonction F telle que F\'= f. Autrement dit, dériver F donne f. Il existe une infinité de primitives (elles diffèrent d\'une constante C).',
+        illustration: `<svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="10" width="280" height="100" rx="10" fill="#1A1A2E"/>
+          <text x="150" y="45" text-anchor="middle" font-size="13" fill="#FFE66D" font-family="Georgia" font-weight="bold">Si f(x) = 2x</text>
+          <text x="150" y="70" text-anchor="middle" font-size="13" fill="#4ECDC4" font-family="Georgia">alors F(x) = x² + C</text>
+          <text x="150" y="95" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.6)" font-family="Georgia">car F'(x) = 2x = f(x) ✓</text>
+        </svg>`,
+        example:'Primitive de f(x) = 3x² → F(x) = x³ + C. Vérification : F\'(x) = 3x² = f(x) ✓',
+        tip:'Toujours ajouter la constante C quand on cherche une primitive !'
+      },
+      {
+        heading:'L\'intégrale définie',
+        content:'L\'intégrale ∫[a,b] f(x)dx représente l\'aire algébrique entre la courbe de f et l\'axe des abscisses, entre x=a et x=b. Elle se calcule avec : F(b) - F(a).',
+        illustration: `<svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="10" width="280" height="100" rx="10" fill="#1A1A2E"/>
+          <text x="150" y="42" text-anchor="middle" font-size="15" fill="#FF6B35" font-family="Georgia" font-weight="bold">∫[a,b] f(x)dx = F(b) - F(a)</text>
+          <line x1="30" x2="270" y1="65" y2="65" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          <text x="150" y="82" text-anchor="middle" font-size="12" fill="#A78BFA" font-family="Georgia">Exemple : ∫[0,2] x dx</text>
+          <text x="150" y="100" text-anchor="middle" font-size="12" fill="#4ECDC4" font-family="Georgia">= [x²/2]₀² = 4/2 - 0 = 2</text>
+        </svg>`,
+        example:'∫[1,3] 2x dx = [x²]₁³ = 9 - 1 = 8',
+        tip:'Retiens : intégrer c\'est "remonter" la dérivée, puis évaluer entre les bornes.'
+      }
+    ],
+    quiz:[
+      { q:'Quelle est la primitive de f(x) = 1 ?', opts:['f(x) = 0','F(x) = x + C','F(x) = x²','F(x) = 1/x'], answer:1 },
+      { q:'Que vaut ∫[0,1] x dx ?', opts:['1','2','1/2','0'], answer:2 },
+      { q:'Si F\'(x) = f(x), alors F est...', opts:['la dérivée de f','une primitive de f','l\'inverse de f','la composée de f'], answer:1 },
+      { q:'La constante C dans F(x) = x² + C représente...', opts:['Une erreur','Une infinité de primitives','Un coefficient','La valeur en 0'], answer:1 },
+      { q:'∫[0,2] 3x² dx = ?', opts:['6','12','8','4'], answer:2 },
+    ]
+  }
+};
+
+// Generic lesson generator for courses without specific content
+function generateLesson(level, courseIdx, course) {
+  const l = LEVELS[level];
+  const topics = {
+    primaire: ['objets concrets','doigts et billes','puzzles','dessins colorés','jeux'],
+    college: ['exemples visuels','graphiques','tableaux','problèmes de la vie quotidienne','schémas'],
+    lycee: ['démonstrations','graphes de fonctions','tableaux de valeurs','applications concrètes','méthodes formelles']
+  };
+  const cat = l.color.includes('#6B') || l.color.includes('#FF') && courseIdx < 5 ? 'primaire' :
+              l.color.includes('#38') || l.color.includes('#34') || l.color.includes('#FA') ? 'college' : 'lycee';
+
+  return {
+    title: course.title + ' ' + (courseIdx < 3 ? '🌟' : courseIdx < 6 ? '💡' : '🔥'),
+    intro: `Dans ce cours sur "${course.title}", tu vas découvrir les concepts essentiels de manière claire et progressive.`,
+    sections:[
+      {
+        heading: 'Introduction au concept',
+        content: `Ce cours aborde ${course.title.toLowerCase()} — une notion fondamentale en mathématiques. On va l'explorer pas à pas avec des ${topics[cat][0]} et des ${topics[cat][1]}.`,
+        illustration: `<svg viewBox="0 0 280 90" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="10" width="260" height="70" rx="12" fill="${l.color}" opacity="0.15" stroke="${l.color}" stroke-width="2"/>
+          <text x="140" y="38" text-anchor="middle" font-size="14" fill="${l.color}" font-weight="bold" font-family="Baloo 2">${course.title}</text>
+          <text x="140" y="58" text-anchor="middle" font-size="11" fill="${l.color}" opacity="0.8" font-family="Nunito">${course.sub}</text>
+          <text x="140" y="72" text-anchor="middle" font-size="18">${l.emoji}</text>
+        </svg>`,
+        example: `Exemple concret : prenons un cas de la vie de tous les jours pour comprendre "${course.title.toLowerCase()}".`,
+        tip: `N'hésite pas à refaire plusieurs fois les exercices pour bien maîtriser !`
+      },
+      {
+        heading: 'Méthode et règles à retenir',
+        content: `Pour maîtriser ${course.title.toLowerCase()}, voici les étapes clés :\n• Comprendre la définition de base\n• Reconnaître les cas d'application\n• Appliquer la méthode étape par étape\n• Vérifier son résultat`,
+        illustration: `<svg viewBox="0 0 280 90" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="10" width="260" height="70" rx="12" fill="#1A1A2E"/>
+          <text x="140" y="40" text-anchor="middle" font-size="13" fill="#FFE66D" font-family="Georgia">Règle fondamentale</text>
+          <text x="140" y="62" text-anchor="middle" font-size="12" fill="#4ECDC4" font-family="Georgia">${course.title} → Méthode</text>
+          <text x="140" y="78" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.5)" font-family="Nunito">Niveau ${l.name}</text>
+        </svg>`,
+        example: `Application directe de la méthode sur un exemple simple.`,
+        tip: `La pratique régulière est la clé du succès en maths !`
+      }
+    ],
+    quiz:[
+      { q:`Quel est le sujet principal de ce cours ?`, opts:[course.title, 'La géométrie', 'Le calcul mental', 'Les statistiques'], answer:0 },
+      { q:`Ce cours est au niveau...`, opts:['CP', l.name, 'Terminale', 'CM1'], answer:1 },
+      { q:`Combien d'étapes dans la méthode vue ?`, opts:['2','3','4','5'], answer:2 },
+      { q:`Quelle est la meilleure façon de progresser ?`, opts:['Ne rien faire','Pratiquer régulièrement','Copier','Deviner'], answer:1 },
+      { q:`As-tu bien compris ce cours ?`, opts:['Pas du tout','Un peu','Oui !','Super bien !'], answer:3 },
+    ]
+  };
+}
+
+// ============================================================
+// STATE
+// ============================================================
+let state = {
+  currentLevel: null,
+  currentCourse: null,
+  currentCourseIdx: null,
+  trialActive: true,
+  isPremium: false,
+  quizAnswers: {},
+  quizSubmitted: false
+};
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function showPage(id) {
+  document.getElementById('homePage').classList.remove('hidden');
+  document.getElementById('levelPage').classList.remove('active');
+  document.getElementById('lessonPage').classList.remove('active');
+  if (id === 'home') {
+    // already shown
+  } else if (id === 'level') {
+    document.getElementById('homePage').classList.add('hidden');
+    document.getElementById('levelPage').classList.add('active');
+  } else if (id === 'lesson') {
+    document.getElementById('homePage').classList.add('hidden');
+    document.getElementById('lessonPage').classList.add('active');
+  }
+  window.scrollTo(0, 0);
+}
+
+function goHome() { showPage('home'); }
+function scrollToLevels() { document.getElementById('levelsSection').scrollIntoView({behavior:'smooth'}); }
+
+// ============================================================
+// LEVEL PAGE
+// ============================================================
+function openLevel(levelId) {
+  state.currentLevel = levelId;
+  const l = LEVELS[levelId];
+  document.getElementById('levelEmoji').textContent = l.emoji;
+  document.getElementById('levelTitle').textContent = `${l.name} — ${l.fullName}`;
+  document.getElementById('levelDesc').textContent = l.desc;
+
+  const freeCount = l.courses.filter(c => c.free).length;
+  const pct = Math.round((freeCount / l.courses.length) * 100);
+  document.getElementById('levelProgress').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = `${freeCount} cours gratuits sur ${l.courses.length}`;
+
+  // Style the level page
+  document.querySelector('.level-hero').style.background = `linear-gradient(135deg, #fff, ${l.bg})`;
+
+  const list = document.getElementById('coursesList');
+  list.innerHTML = l.courses.map((course, i) => {
+    const isFree = course.free || state.isPremium || state.trialActive;
+    const isLocked = !isFree;
+    const colors = ['#FF6B35','#FFE66D','#4ECDC4','#A78BFA','#6BCB77','#FF6B35','#FFE66D','#4ECDC4'];
+    const color = colors[i % colors.length];
+    return `
+      <div class="course-item ${isLocked ? 'locked' : ''}" onclick="${isLocked ? 'showPaywall()' : `openCourse('${levelId}', ${i})`}">
+        <div class="course-num" style="background:${color}20;color:${color};">${i+1}</div>
+        <div class="course-info">
+          <div class="course-item-title">${course.title}</div>
+          <div class="course-item-sub">${course.sub}</div>
+        </div>
+        <span class="course-badge ${isLocked ? 'badge-lock' : 'badge-free'}">${isLocked ? '🔒' : '✓ Gratuit'}</span>
+      </div>
+    `;
+  }).join('');
+
+  document.getElementById('lessonBack').onclick = () => showPage('level');
+  showPage('level');
+}
+
+// ============================================================
+// LESSON PAGE
+// ============================================================
+function openCourse(levelId, courseIdx) {
+  state.currentCourse = courseIdx;
+  state.currentCourseIdx = courseIdx;
+  state.quizAnswers = {};
+  state.quizSubmitted = false;
+
+  const l = LEVELS[levelId];
+  const course = l.courses[courseIdx];
+
+  // Get lesson data
+  let lesson = LESSON_CONTENT[course.id];
+  if (!lesson) lesson = generateLesson(levelId, courseIdx, course);
+
+  const html = renderLesson(lesson, l, course);
+  document.getElementById('lessonContent').innerHTML = html;
+  showPage('lesson');
+
+  // Bind quiz
+  bindQuiz(lesson.quiz);
+}
+
+function renderLesson(lesson, level, course) {
+  return `
+    <div class="lesson-header" style="background:linear-gradient(135deg,#fff,${level.bg})">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="font-size:1.8rem;">${level.emoji}</span>
+        <div>
+          <div style="font-size:0.75rem;font-weight:800;color:${level.color};text-transform:uppercase;letter-spacing:0.06em;">${level.name}</div>
+          <h3 style="font-size:1.3rem;">${lesson.title}</h3>
+        </div>
+      </div>
+      <p style="margin-top:8px;">${lesson.intro}</p>
+    </div>
+
+    <div class="lesson-content">
+      ${lesson.sections.map((sec, i) => `
+        <div class="lesson-section">
+          <h4>${sec.heading}</h4>
+          <p>${sec.content.replace(/\n•/g, '<br>•')}</p>
+          ${sec.illustration ? `<div class="illustration">${sec.illustration}</div>` : ''}
+          <div class="example-box">
+            <div class="ex-label">📌 Exemple</div>
+            <p>${sec.example}</p>
+          </div>
+          <div class="tip-box">
+            <span class="tip-icon">💡</span>
+            <p>${sec.tip}</p>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+
+    <!-- QUIZ -->
+    <div class="quiz-section">
+      <div class="quiz-title">🎯 Quiz — Teste-toi !</div>
+      <div class="quiz-subtitle">Réponds aux questions pour valider ta compréhension.</div>
+      <div id="quizQuestions">
+        ${lesson.quiz.map((q, qi) => `
+          <div class="quiz-question" id="qq_${qi}">
+            <div class="q-num">Question ${qi+1} / ${lesson.quiz.length}</div>
+            <div class="q-text">${q.q}</div>
+            <div class="q-options">
+              ${q.opts.map((opt, oi) => `
+                <button class="q-option" id="qo_${qi}_${oi}" onclick="selectAnswer(${qi}, ${oi}, ${q.answer})">${opt}</button>
+              `).join('')}
+            </div>
+            <div class="q-feedback" id="qf_${qi}"></div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="quiz-result" id="quizResult">
+        <div class="result-emoji" id="resultEmoji"></div>
+        <div class="result-score" id="resultScore"></div>
+        <div class="result-text" id="resultText"></div>
+        <button class="result-btn" onclick="resetQuiz()">🔄 Recommencer le quiz</button>
+      </div>
+    </div>
+  `;
+}
+
+function bindQuiz(questions) {
+  state.quizData = questions;
+  state.quizAnswers = {};
+  state.quizSubmitted = false;
+}
+
+function selectAnswer(qi, oi, correct) {
+  if (state.quizSubmitted) return;
+  if (state.quizAnswers[qi] !== undefined) return; // already answered this question
+
+  state.quizAnswers[qi] = oi;
+  const isCorrect = oi === correct;
+
+  // Disable all options for this question
+  const opts = document.querySelectorAll(`[id^="qo_${qi}_"]`);
+  opts.forEach((btn, i) => {
+    btn.classList.add('disabled');
+    if (i === correct) btn.classList.add('correct');
+    else if (i === oi && !isCorrect) btn.classList.add('wrong');
+  });
+
+  // Show feedback
+  const fb = document.getElementById(`qf_${qi}`);
+  fb.textContent = isCorrect ? '✅ Bonne réponse !' : `❌ La bonne réponse était : "${state.quizData[qi].opts[correct]}"`;
+  fb.className = `q-feedback show ${isCorrect ? 'correct' : 'wrong'}`;
+
+  // Check if all answered
+  if (Object.keys(state.quizAnswers).length === state.quizData.length) {
+    setTimeout(showQuizResult, 600);
+  }
+}
+
+function showQuizResult() {
+  state.quizSubmitted = true;
+  const total = state.quizData.length;
+  const correct = state.quizData.filter((q, i) => state.quizAnswers[i] === q.answer).length;
+  const pct = Math.round((correct / total) * 100);
+
+  const emoji = pct === 100 ? '🏆' : pct >= 80 ? '🌟' : pct >= 60 ? '👍' : pct >= 40 ? '📚' : '💪';
+  const text = pct === 100 ? 'Parfait ! Tu maîtrises ce cours !' :
+               pct >= 80 ? 'Excellent travail, continue !' :
+               pct >= 60 ? 'Bien ! Un peu de révision et tu y es !' :
+               pct >= 40 ? 'Pas mal, relis le cours et réessaie !' :
+               'Courage ! Relis le cours attentivement.';
+
+  document.getElementById('resultEmoji').textContent = emoji;
+  document.getElementById('resultScore').textContent = `${correct} / ${total} (${pct}%)`;
+  document.getElementById('resultText').textContent = text;
+  document.getElementById('quizResult').classList.add('show');
+  document.getElementById('quizResult').scrollIntoView({behavior:'smooth'});
+}
+
+function resetQuiz() {
+  state.quizAnswers = {};
+  state.quizSubmitted = false;
+  // Re-render quiz section only
+  const qs = document.getElementById('quizQuestions');
+  const qr = document.getElementById('quizResult');
+  qr.classList.remove('show');
+  // Reset all buttons
+  document.querySelectorAll('.q-option').forEach(b => {
+    b.className = 'q-option';
+  });
+  document.querySelectorAll('.q-feedback').forEach(f => {
+    f.className = 'q-feedback';
+  });
+}
+
+// ============================================================
+// PAYWALL
+// ============================================================
+const PLANS = {
+  monthly: { oldPrice: 'Valeur : 59,88€/an si mensuel', newPrice: '4,99€', per: 'par mois · résiliable à tout moment', perk: 'Flexibilité totale, sans engagement' },
+  yearly:  { oldPrice: 'Valeur réelle : 59,88€/an', newPrice: '19,99€', per: 'par an · économise 67%', perk: 'Économise 67% vs le mensuel 🎉' },
+  lifetime:{ oldPrice: 'Valeur réelle : 89,99€', newPrice: '29,99€', per: 'paiement unique · accès à vie', perk: 'Plus jamais à payer, pour toujours ✓' }
+};
+let selectedPlan = 'yearly';
+
+function selectPlan(plan) {
+  selectedPlan = plan;
+  ['monthly','yearly','lifetime'].forEach(p => document.getElementById('tab_'+p).classList.remove('active'));
+  document.getElementById('tab_'+plan).classList.add('active');
+  const d = PLANS[plan];
+  document.getElementById('modalOldPrice').textContent = d.oldPrice;
+  document.getElementById('modalNewPrice').textContent = d.newPrice;
+  document.getElementById('modalPer').textContent = d.per;
+  document.getElementById('planPerkExtra').textContent = d.perk;
+}
+
+function showPaywall(plan) {
+  selectPlan(plan || selectedPlan);
+  document.getElementById('paywallModal').classList.add('show');
+}
+function closePaywall() {
+  document.getElementById('paywallModal').classList.remove('show');
+}
+function closePaywallOutside(e) {
+  if (e.target === document.getElementById('paywallModal')) closePaywall();
+}
+function startTrial() {
+  state.isPremium = true;
+  closePaywall();
+  showToast('🎉 Essai gratuit activé ! 7 jours pour explorer tout le contenu.');
+  // Refresh the current level page if open
+  if (state.currentLevel) openLevel(state.currentLevel);
+}
+
+// ============================================================
+// TOAST
+// ============================================================
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ============================================================
+// TRIAL COUNTDOWN (simulated)
+// ============================================================
+// Simulate trial countdown from localStorage
+(function() {
+  let days = 7;
+  document.getElementById('trialDays').textContent = days;
+})();
+</script>
+
+</body>
+</html>
