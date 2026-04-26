@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MathsBTS — La plateforme maths qui change tout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="logo" onclick="showPage('home')">Maths<span>BTS</span></div>
+    <div class="nav-links">
+      <a onclick="showPage('home')">Accueil</a>
+      <a onclick="showPage('cours')">Cours</a>
+      <a onclick="showPage('exercices')">Exercices</a>
+      <a onclick="showPage('ia')">IA Tutor</a>
+      <a onclick="showPage('tarifs')" class="nav-cta">Tarifs</a>
+    </div>
+    <button class="burger" onclick="toggleMenu()">☰</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a onclick="showPage('home');toggleMenu()">Accueil</a>
+    <a onclick="showPage('cours');toggleMenu()">Cours</a>
+    <a onclick="showPage('exercices');toggleMenu()">Exercices</a>
+    <a onclick="showPage('ia');toggleMenu()">IA Tutor</a>
+    <a onclick="showPage('tarifs');toggleMenu()">Tarifs</a>
+  </div>
+</nav>
+
+<!-- ==================== PAGE HOME ==================== -->
+
+<div id="page-home" class="page active">
+
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="blob b1"></div>
+      <div class="blob b2"></div>
+      <div class="grid-lines"></div>
+    </div>
+    <div class="hero-content">
+      <div class="badge">🚀 La plateforme maths BTS #1 en France</div>
+      <h1>Les maths BTS,<br/><span class="gradient-text">enfin expliquées</span><br/>simplement.</h1>
+      <p class="hero-sub">Cours complets, exercices corrigés et un assistant IA disponible 24h/24 — tout ce dont tu as besoin pour réussir ton BTS.</p>
+      <div class="hero-btns">
+        <button class="btn-primary big" onclick="showPage('tarifs')">Essai gratuit 1 mois →</button>
+        <button class="btn-ghost big" onclick="showPage('cours')">Voir les cours</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>12</strong><span>Chapitres</span></div>
+        <div class="stat"><strong>150+</strong><span>Exercices</span></div>
+        <div class="stat"><strong>IA</strong><span>Tutor 24/7</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="math-card floating">
+        <div class="math-card-head">📐 Analyse</div>
+        <div class="math-formula">f'(x) = lim<sub>h→0</sub> <sup>f(x+h)−f(x)</sup>/<sub>h</sub></div>
+      </div>
+      <div class="math-card floating delay1">
+        <div class="math-card-head">📊 Stats</div>
+        <div class="math-formula">σ² = Σfᵢ(xᵢ−x̄)²</div>
+      </div>
+      <div class="math-card floating delay2">
+        <div class="math-card-head">🤖 IA répond</div>
+        <div class="math-formula">"Comment dériver ln(x) ?" ✓</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2>Pourquoi <span class="gradient-text">MathsBTS</span> ?</h2>
+    <p class="section-sub">Des ressources conçues spécialement pour les BTS, souvent ignorés par les autres plateformes.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feat-icon">📚</div>
+        <h3>Cours complets</h3>
+        <p>12 chapitres couvrant tout le programme BTS (SIO, AG, CI, NDRC…) avec explications pas-à-pas.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">✏️</div>
+        <h3>Exercices corrigés</h3>
+        <p>Plus de 150 exercices avec corrections détaillées, classés par niveau et par thème.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">🤖</div>
+        <h3>IA Tutor</h3>
+        <p>Pose tes questions à notre assistant IA spécialisé en maths BTS, disponible 24h/24.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">🎯</div>
+        <h3>Adapté BTS</h3>
+        <p>Programme aligné avec les épreuves officielles. Rien d'inutile, tout ce qui compte.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">📱</div>
+        <h3>100% en ligne</h3>
+        <p>Accède à tout depuis ton téléphone, tablette ou ordinateur. Sans installation.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">💰</div>
+        <h3>Essai gratuit</h3>
+        <p>1 mois d'accès complet gratuit. Aucune CB requise pour commencer.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapters-preview">
+    <h2>Le programme <span class="gradient-text">complet</span></h2>
+    <p class="section-sub">Un an de maths BTS organisé en 12 chapitres progressifs.</p>
+    <div class="chapters-grid">
+      <div class="chapter-pill" onclick="showPage('cours')">Ch.1 — Suites numériques</div>
+      <div class="chapter-pill" onclick="showPage('cours')">Ch.2 — Fonctions & Limites</div>
+      <div class="chapter-pill" onclick="showPage('cours')">Ch.3 — Dérivation</div>
+      <div class="chapter-pill" onclick="showPage('cours')">Ch.4 — Intégration</div>
+      <div class="chapter-pill" onclick="showPage('cours')">Ch.5 — Logarithme & Expo</div>
+      <div class="chapter-pill" onclick="showPage('cours')">Ch.6 — Probabilités</div>
+      <div class="chapter-pill" onclick="showPage('cours')">Ch.7 — Statistiques</div>
+      <div class="chapter-pill" onclick="showPage('cours')">Ch.8 — Algèbre linéaire</div>
+      <div class="chapter-pill" onclick="showPage('cours')">Ch.9 — Matrices</div>
+      <div class="chapter-pill" onclick="showPage('cours')">Ch.10 — Optimisation</div>
+      <div class="chapter-pill" onclick="showPage('cours')">Ch.11 — Arithmétique</div>
+      <div class="chapter-pill" onclick="showPage('cours')">Ch.12 — Révisions & Annales</div>
+    </div>
+    <button class="btn-primary" onclick="showPage('cours')">Accéder aux cours →</button>
+  </section>
+
+  <section class="testimonials">
+    <h2>Ils ont réussi grâce à <span class="gradient-text">MathsBTS</span></h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <p>"J'avais 6 en maths en première année. Grâce à MathsBTS, j'ai eu 14 à l'examen. Les cours sont clairs et l'IA répond à toutes mes questions."</p>
+        <div class="testi-author"><div class="avatar">L</div><strong>Lucas T.</strong><span>BTS SIO, Lyon</span></div>
+      </div>
+      <div class="testi-card">
+        <p>"Les corrections d'exercices sont vraiment bien faites, chaque étape est expliquée. J'aurais adoré avoir ça dès le début."</p>
+        <div class="testi-author"><div class="avatar">M</div><strong>Manon D.</strong><span>BTS NDRC, Bordeaux</span></div>
+      </div>
+      <div class="testi-card">
+        <p>"L'IA m'a sauvé la mise la veille de l'exam. Elle m'a expliqué les intégrales en 10 minutes, ce que mon prof n'avait pas réussi en 2 heures."</p>
+        <div class="testi-author"><div class="avatar">R</div><strong>Rémi K.</strong><span>BTS AG, Paris</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <h2>Commence aujourd'hui,<br/><span class="gradient-text">gratuitement.</span></h2>
+    <p>1 mois d'accès complet. Aucun engagement. Aucune carte bancaire requise.</p>
+    <button class="btn-primary big" onclick="showPage('tarifs')">Démarrer l'essai gratuit →</button>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="logo">Maths<span>BTS</span></div>
+      <p>La plateforme maths dédiée aux étudiants BTS.</p>
+      <div class="footer-links">
+        <a href="#">Mentions légales</a>
+        <a href="#">CGU</a>
+        <a href="#">Contact</a>
+      </div>
+      <p class="footer-copy">© 2025 MathsBTS — Tous droits réservés</p>
+    </div>
+  </footer>
+</div>
+
+<!-- ==================== PAGE COURS ==================== -->
+
+<div id="page-cours" class="page">
+  <div class="page-header">
+    <h1>📚 Les Cours</h1>
+    <p>Programme complet BTS — 12 chapitres, toute l'année</p>
+  </div>
+
+  <div class="cours-container">
+    <div class="cours-sidebar">
+      <h3>Chapitres</h3>
+      <ul id="chapitresList">
+        <li class="active" onclick="showChapitre(0,this)">Ch.1 — Suites numériques</li>
+        <li onclick="showChapitre(1,this)">Ch.2 — Fonctions & Limites</li>
+        <li onclick="showChapitre(2,this)">Ch.3 — Dérivation</li>
+        <li onclick="showChapitre(3,this)">Ch.4 — Intégration</li>
+        <li onclick="showChapitre(4,this)">Ch.5 — Logarithme & Expo</li>
+        <li onclick="showChapitre(5,this)">Ch.6 — Probabilités</li>
+        <li onclick="showChapitre(6,this)">Ch.7 — Statistiques</li>
+        <li onclick="showChapitre(7,this)">Ch.8 — Algèbre linéaire</li>
+        <li onclick="showChapitre(8,this)">Ch.9 — Matrices</li>
+        <li onclick="showChapitre(9,this)">Ch.10 — Optimisation</li>
+        <li onclick="showChapitre(10,this)">Ch.11 — Arithmétique</li>
+        <li onclick="showChapitre(11,this)">Ch.12 — Révisions & Annales</li>
+      </ul>
+    </div>
+    <div class="cours-content" id="coursContent">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE EXERCICES ==================== -->
+
+<div id="page-exercices" class="page">
+  <div class="page-header">
+    <h1>✏️ Exercices corrigés</h1>
+    <p>150+ exercices avec corrections détaillées</p>
+  </div>
+  <div class="exo-filter">
+    <button class="filter-btn active" onclick="filterExo('tous',this)">Tous</button>
+    <button class="filter-btn" onclick="filterExo('analyse',this)">Analyse</button>
+    <button class="filter-btn" onclick="filterExo('proba',this)">Probabilités</button>
+    <button class="filter-btn" onclick="filterExo('stats',this)">Statistiques</button>
+    <button class="filter-btn" onclick="filterExo('algebre',this)">Algèbre</button>
+  </div>
+  <div class="exo-grid" id="exoGrid">
+    <!-- Filled by JS -->
+  </div>
+</div>
+
+<!-- ==================== PAGE IA ==================== -->
+
+<div id="page-ia" class="page">
+  <div class="page-header">
+    <h1>🤖 IA Tutor</h1>
+    <p>Pose tes questions, je réponds en direct !</p>
+  </div>
+  <div class="ia-container">
+    <div class="ia-chat" id="iaChat">
+      <div class="ia-msg bot">
+        <div class="ia-avatar">🤖</div>
+        <div class="ia-bubble">Bonjour ! Je suis ton assistant maths BTS. Pose-moi n'importe quelle question sur les maths : suites, dérivées, probabilités, statistiques… Je suis là pour t'aider ! 😊</div>
+      </div>
+    </div>
+    <div class="ia-input-area">
+      <input type="text" id="iaInput" placeholder="Ex: Comment calculer une dérivée ? Explique-moi les suites arithmétiques..." onkeydown="if(event.key==='Enter')sendIAMessage()"/>
+      <button onclick="sendIAMessage()" class="btn-primary">Envoyer →</button>
+    </div>
+    <div class="ia-suggestions">
+      <span onclick="askSuggestion('Comment dériver ln(x) ?')">Comment dériver ln(x) ?</span>
+      <span onclick="askSuggestion('Qu\'est-ce qu\'une suite géométrique ?')">Suites géométriques</span>
+      <span onclick="askSuggestion('Explique les probabilités conditionnelles')">Probabilités conditionnelles</span>
+      <span onclick="askSuggestion('Comment calculer une intégrale ?')">Calcul intégral</span>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE TARIFS ==================== -->
+
+<div id="page-tarifs" class="page">
+  <div class="page-header">
+    <h1>💳 Tarifs</h1>
+    <p>Simple, transparent, sans mauvaise surprise.</p>
+  </div>
+  <div class="tarifs-grid">
+    <div class="tarif-card">
+      <div class="tarif-badge">Gratuit</div>
+      <div class="tarif-price">0€<span>/mois</span></div>
+      <div class="tarif-duration">pendant 1 mois</div>
+      <ul class="tarif-features">
+        <li>✅ Accès à tous les cours</li>
+        <li>✅ Tous les exercices corrigés</li>
+        <li>✅ IA Tutor illimitée</li>
+        <li>✅ Aucune CB requise</li>
+        <li>✅ Sans engagement</li>
+      </ul>
+      <button class="btn-primary" onclick="startFreeTrial()">Démarrer gratuitement →</button>
+    </div>
+    <div class="tarif-card featured">
+      <div class="tarif-badge hot">⭐ Populaire</div>
+      <div class="tarif-price">7,99€<span>/mois</span></div>
+      <div class="tarif-duration">après l'essai gratuit</div>
+      <ul class="tarif-features">
+        <li>✅ Tout l'accès Gratuit +</li>
+        <li>✅ Nouvelles fiches chaque semaine</li>
+        <li>✅ Corrections personnalisées</li>
+        <li>✅ Accès aux annales BTS</li>
+        <li>✅ Support prioritaire</li>
+      </ul>
+      <button class="btn-primary" onclick="startFreeTrial()">Essayer gratuitement →</button>
+    </div>
+    <div class="tarif-card">
+      <div class="tarif-badge">Annuel</div>
+      <div class="tarif-price">59€<span>/an</span></div>
+      <div class="tarif-duration">= 4,92€/mois — économisez 38%</div>
+      <ul class="tarif-features">
+        <li>✅ Tout le plan mensuel +</li>
+        <li>✅ Accès à vie aux cours achetés</li>
+        <li>✅ Sessions live mensuelles</li>
+        <li>✅ Groupe Discord privé</li>
+        <li>✅ Certificat de réussite</li>
+      </ul>
+      <button class="btn-ghost" onclick="startFreeTrial()">Choisir l'annuel →</button>
+    </div>
+  </div>
+  <div class="tarif-note">
+    <p>🔒 Paiement sécurisé via Stripe · Résiliation en 1 clic · Aucun frais caché</p>
+    <p>Pour le déploiement gratuit : GitHub Pages (hébergement) + Stripe Free Tier (paiements) + Anthropic API (IA)</p>
+  </div>
+</div>
+
+<!-- MODAL SUCCESS -->
+
+<div id="modal" class="modal-overlay" onclick="closeModal()">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="modal-icon">🎉</div>
+    <h2>Bienvenue sur MathsBTS !</h2>
+    <p>Ton essai gratuit d'1 mois commence maintenant. Profite de tout le contenu sans limite !</p>
+    <button class="btn-primary" onclick="closeModal();showPage('cours')">Accéder aux cours →</button>
+  </div>
+</div>
+
+<script src="data.js"></script>
+
+<script src="app.js"></script>
+
+</body>
+</html>
