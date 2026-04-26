@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -13,30 +12,28 @@
 <body>
 
 <!-- NAV -->
-
 <nav id="navbar">
   <div class="nav-inner">
-    <div class="logo" onclick="showPage('home')">Maths<span>BTS</span></div>
+    <button class="logo nav-btn" data-page="home">Maths<span>BTS</span></button>
     <div class="nav-links">
-      <a onclick="showPage('home')">Accueil</a>
-      <a onclick="showPage('cours')">Cours</a>
-      <a onclick="showPage('exercices')">Exercices</a>
-      <a onclick="showPage('ia')">IA Tutor</a>
-      <a onclick="showPage('tarifs')" class="nav-cta">Tarifs</a>
+      <button class="nav-link nav-btn" data-page="home">Accueil</button>
+      <button class="nav-link nav-btn" data-page="cours">Cours</button>
+      <button class="nav-link nav-btn" data-page="exercices">Exercices</button>
+      <button class="nav-link nav-btn" data-page="ia">IA Tutor</button>
+      <button class="nav-link nav-cta nav-btn" data-page="tarifs">Tarifs</button>
     </div>
-    <button class="burger" onclick="toggleMenu()">☰</button>
+    <button class="burger" id="burgerBtn">☰</button>
   </div>
   <div class="mobile-menu" id="mobileMenu">
-    <a onclick="showPage('home');toggleMenu()">Accueil</a>
-    <a onclick="showPage('cours');toggleMenu()">Cours</a>
-    <a onclick="showPage('exercices');toggleMenu()">Exercices</a>
-    <a onclick="showPage('ia');toggleMenu()">IA Tutor</a>
-    <a onclick="showPage('tarifs');toggleMenu()">Tarifs</a>
+    <button class="mobile-link nav-btn" data-page="home">Accueil</button>
+    <button class="mobile-link nav-btn" data-page="cours">Cours</button>
+    <button class="mobile-link nav-btn" data-page="exercices">Exercices</button>
+    <button class="mobile-link nav-btn" data-page="ia">IA Tutor</button>
+    <button class="mobile-link nav-btn" data-page="tarifs">Tarifs</button>
   </div>
 </nav>
 
 <!-- ==================== PAGE HOME ==================== -->
-
 <div id="page-home" class="page active">
 
   <section class="hero">
@@ -50,8 +47,8 @@
       <h1>Les maths BTS,<br/><span class="gradient-text">enfin expliquées</span><br/>simplement.</h1>
       <p class="hero-sub">Cours complets, exercices corrigés et un assistant IA disponible 24h/24 — tout ce dont tu as besoin pour réussir ton BTS.</p>
       <div class="hero-btns">
-        <button class="btn-primary big" onclick="showPage('tarifs')">Essai gratuit 1 mois →</button>
-        <button class="btn-ghost big" onclick="showPage('cours')">Voir les cours</button>
+        <button class="btn-primary big nav-btn" data-page="tarifs">Essai gratuit 1 mois →</button>
+        <button class="btn-ghost big nav-btn" data-page="cours">Voir les cours</button>
       </div>
       <div class="hero-stats">
         <div class="stat"><strong>12</strong><span>Chapitres</span></div>
@@ -116,20 +113,20 @@
     <h2>Le programme <span class="gradient-text">complet</span></h2>
     <p class="section-sub">Un an de maths BTS organisé en 12 chapitres progressifs.</p>
     <div class="chapters-grid">
-      <div class="chapter-pill" onclick="showPage('cours')">Ch.1 — Suites numériques</div>
-      <div class="chapter-pill" onclick="showPage('cours')">Ch.2 — Fonctions & Limites</div>
-      <div class="chapter-pill" onclick="showPage('cours')">Ch.3 — Dérivation</div>
-      <div class="chapter-pill" onclick="showPage('cours')">Ch.4 — Intégration</div>
-      <div class="chapter-pill" onclick="showPage('cours')">Ch.5 — Logarithme & Expo</div>
-      <div class="chapter-pill" onclick="showPage('cours')">Ch.6 — Probabilités</div>
-      <div class="chapter-pill" onclick="showPage('cours')">Ch.7 — Statistiques</div>
-      <div class="chapter-pill" onclick="showPage('cours')">Ch.8 — Algèbre linéaire</div>
-      <div class="chapter-pill" onclick="showPage('cours')">Ch.9 — Matrices</div>
-      <div class="chapter-pill" onclick="showPage('cours')">Ch.10 — Optimisation</div>
-      <div class="chapter-pill" onclick="showPage('cours')">Ch.11 — Arithmétique</div>
-      <div class="chapter-pill" onclick="showPage('cours')">Ch.12 — Révisions & Annales</div>
+      <button class="chapter-pill nav-btn" data-page="cours">Ch.1 — Suites numériques</button>
+      <button class="chapter-pill nav-btn" data-page="cours">Ch.2 — Fonctions & Limites</button>
+      <button class="chapter-pill nav-btn" data-page="cours">Ch.3 — Dérivation</button>
+      <button class="chapter-pill nav-btn" data-page="cours">Ch.4 — Intégration</button>
+      <button class="chapter-pill nav-btn" data-page="cours">Ch.5 — Logarithme & Expo</button>
+      <button class="chapter-pill nav-btn" data-page="cours">Ch.6 — Probabilités</button>
+      <button class="chapter-pill nav-btn" data-page="cours">Ch.7 — Statistiques</button>
+      <button class="chapter-pill nav-btn" data-page="cours">Ch.8 — Algèbre linéaire</button>
+      <button class="chapter-pill nav-btn" data-page="cours">Ch.9 — Matrices</button>
+      <button class="chapter-pill nav-btn" data-page="cours">Ch.10 — Optimisation</button>
+      <button class="chapter-pill nav-btn" data-page="cours">Ch.11 — Arithmétique</button>
+      <button class="chapter-pill nav-btn" data-page="cours">Ch.12 — Révisions & Annales</button>
     </div>
-    <button class="btn-primary" onclick="showPage('cours')">Accéder aux cours →</button>
+    <button class="btn-primary nav-btn" data-page="cours">Accéder aux cours →</button>
   </section>
 
   <section class="testimonials">
@@ -153,12 +150,12 @@
   <section class="cta-banner">
     <h2>Commence aujourd'hui,<br/><span class="gradient-text">gratuitement.</span></h2>
     <p>1 mois d'accès complet. Aucun engagement. Aucune carte bancaire requise.</p>
-    <button class="btn-primary big" onclick="showPage('tarifs')">Démarrer l'essai gratuit →</button>
+    <button class="btn-primary big nav-btn" data-page="tarifs">Démarrer l'essai gratuit →</button>
   </section>
 
   <footer>
     <div class="footer-inner">
-      <div class="logo">Maths<span>BTS</span></div>
+      <div class="logo-footer">Maths<span>BTS</span></div>
       <p>La plateforme maths dédiée aux étudiants BTS.</p>
       <div class="footer-links">
         <a href="#">Mentions légales</a>
@@ -171,58 +168,50 @@
 </div>
 
 <!-- ==================== PAGE COURS ==================== -->
-
 <div id="page-cours" class="page">
   <div class="page-header">
     <h1>📚 Les Cours</h1>
     <p>Programme complet BTS — 12 chapitres, toute l'année</p>
   </div>
-
   <div class="cours-container">
     <div class="cours-sidebar">
       <h3>Chapitres</h3>
       <ul id="chapitresList">
-        <li class="active" onclick="showChapitre(0,this)">Ch.1 — Suites numériques</li>
-        <li onclick="showChapitre(1,this)">Ch.2 — Fonctions & Limites</li>
-        <li onclick="showChapitre(2,this)">Ch.3 — Dérivation</li>
-        <li onclick="showChapitre(3,this)">Ch.4 — Intégration</li>
-        <li onclick="showChapitre(4,this)">Ch.5 — Logarithme & Expo</li>
-        <li onclick="showChapitre(5,this)">Ch.6 — Probabilités</li>
-        <li onclick="showChapitre(6,this)">Ch.7 — Statistiques</li>
-        <li onclick="showChapitre(7,this)">Ch.8 — Algèbre linéaire</li>
-        <li onclick="showChapitre(8,this)">Ch.9 — Matrices</li>
-        <li onclick="showChapitre(9,this)">Ch.10 — Optimisation</li>
-        <li onclick="showChapitre(10,this)">Ch.11 — Arithmétique</li>
-        <li onclick="showChapitre(11,this)">Ch.12 — Révisions & Annales</li>
+        <li><button class="chap-btn active" data-index="0">Ch.1 — Suites numériques</button></li>
+        <li><button class="chap-btn" data-index="1">Ch.2 — Fonctions & Limites</button></li>
+        <li><button class="chap-btn" data-index="2">Ch.3 — Dérivation</button></li>
+        <li><button class="chap-btn" data-index="3">Ch.4 — Intégration</button></li>
+        <li><button class="chap-btn" data-index="4">Ch.5 — Logarithme & Expo</button></li>
+        <li><button class="chap-btn" data-index="5">Ch.6 — Probabilités</button></li>
+        <li><button class="chap-btn" data-index="6">Ch.7 — Statistiques</button></li>
+        <li><button class="chap-btn" data-index="7">Ch.8 — Algèbre linéaire</button></li>
+        <li><button class="chap-btn" data-index="8">Ch.9 — Matrices</button></li>
+        <li><button class="chap-btn" data-index="9">Ch.10 — Optimisation</button></li>
+        <li><button class="chap-btn" data-index="10">Ch.11 — Arithmétique</button></li>
+        <li><button class="chap-btn" data-index="11">Ch.12 — Révisions & Annales</button></li>
       </ul>
     </div>
-    <div class="cours-content" id="coursContent">
-      <!-- Filled by JS -->
-    </div>
+    <div class="cours-content" id="coursContent"></div>
   </div>
 </div>
 
 <!-- ==================== PAGE EXERCICES ==================== -->
-
 <div id="page-exercices" class="page">
   <div class="page-header">
     <h1>✏️ Exercices corrigés</h1>
     <p>150+ exercices avec corrections détaillées</p>
   </div>
   <div class="exo-filter">
-    <button class="filter-btn active" onclick="filterExo('tous',this)">Tous</button>
-    <button class="filter-btn" onclick="filterExo('analyse',this)">Analyse</button>
-    <button class="filter-btn" onclick="filterExo('proba',this)">Probabilités</button>
-    <button class="filter-btn" onclick="filterExo('stats',this)">Statistiques</button>
-    <button class="filter-btn" onclick="filterExo('algebre',this)">Algèbre</button>
+    <button class="filter-btn active" data-cat="tous">Tous</button>
+    <button class="filter-btn" data-cat="analyse">Analyse</button>
+    <button class="filter-btn" data-cat="proba">Probabilités</button>
+    <button class="filter-btn" data-cat="stats">Statistiques</button>
+    <button class="filter-btn" data-cat="algebre">Algèbre</button>
   </div>
-  <div class="exo-grid" id="exoGrid">
-    <!-- Filled by JS -->
-  </div>
+  <div class="exo-grid" id="exoGrid"></div>
 </div>
 
 <!-- ==================== PAGE IA ==================== -->
-
 <div id="page-ia" class="page">
   <div class="page-header">
     <h1>🤖 IA Tutor</h1>
@@ -236,20 +225,19 @@
       </div>
     </div>
     <div class="ia-input-area">
-      <input type="text" id="iaInput" placeholder="Ex: Comment calculer une dérivée ? Explique-moi les suites arithmétiques..." onkeydown="if(event.key==='Enter')sendIAMessage()"/>
-      <button onclick="sendIAMessage()" class="btn-primary">Envoyer →</button>
+      <input type="text" id="iaInput" placeholder="Ex: Comment calculer une dérivée ?"/>
+      <button id="iaSendBtn" class="btn-primary">Envoyer →</button>
     </div>
     <div class="ia-suggestions">
-      <span onclick="askSuggestion('Comment dériver ln(x) ?')">Comment dériver ln(x) ?</span>
-      <span onclick="askSuggestion('Qu\'est-ce qu\'une suite géométrique ?')">Suites géométriques</span>
-      <span onclick="askSuggestion('Explique les probabilités conditionnelles')">Probabilités conditionnelles</span>
-      <span onclick="askSuggestion('Comment calculer une intégrale ?')">Calcul intégral</span>
+      <button class="suggestion-btn" data-question="Comment dériver ln(x) ?">Comment dériver ln(x) ?</button>
+      <button class="suggestion-btn" data-question="Qu'est-ce qu'une suite géométrique ?">Suites géométriques</button>
+      <button class="suggestion-btn" data-question="Explique les probabilités conditionnelles">Probabilités conditionnelles</button>
+      <button class="suggestion-btn" data-question="Comment calculer une intégrale ?">Calcul intégral</button>
     </div>
   </div>
 </div>
 
 <!-- ==================== PAGE TARIFS ==================== -->
-
 <div id="page-tarifs" class="page">
   <div class="page-header">
     <h1>💳 Tarifs</h1>
@@ -267,7 +255,7 @@
         <li>✅ Aucune CB requise</li>
         <li>✅ Sans engagement</li>
       </ul>
-      <button class="btn-primary" onclick="startFreeTrial()">Démarrer gratuitement →</button>
+      <button class="btn-primary trial-btn">Démarrer gratuitement →</button>
     </div>
     <div class="tarif-card featured">
       <div class="tarif-badge hot">⭐ Populaire</div>
@@ -280,7 +268,7 @@
         <li>✅ Accès aux annales BTS</li>
         <li>✅ Support prioritaire</li>
       </ul>
-      <button class="btn-primary" onclick="startFreeTrial()">Essayer gratuitement →</button>
+      <button class="btn-primary trial-btn">Essayer gratuitement →</button>
     </div>
     <div class="tarif-card">
       <div class="tarif-badge">Annuel</div>
@@ -293,29 +281,25 @@
         <li>✅ Groupe Discord privé</li>
         <li>✅ Certificat de réussite</li>
       </ul>
-      <button class="btn-ghost" onclick="startFreeTrial()">Choisir l'annuel →</button>
+      <button class="btn-ghost trial-btn">Choisir l'annuel →</button>
     </div>
   </div>
   <div class="tarif-note">
     <p>🔒 Paiement sécurisé via Stripe · Résiliation en 1 clic · Aucun frais caché</p>
-    <p>Pour le déploiement gratuit : GitHub Pages (hébergement) + Stripe Free Tier (paiements) + Anthropic API (IA)</p>
   </div>
 </div>
 
-<!-- MODAL SUCCESS -->
-
-<div id="modal" class="modal-overlay" onclick="closeModal()">
-  <div class="modal-box" onclick="event.stopPropagation()">
+<!-- MODAL -->
+<div id="modal" class="modal-overlay">
+  <div class="modal-box">
     <div class="modal-icon">🎉</div>
     <h2>Bienvenue sur MathsBTS !</h2>
     <p>Ton essai gratuit d'1 mois commence maintenant. Profite de tout le contenu sans limite !</p>
-    <button class="btn-primary" onclick="closeModal();showPage('cours')">Accéder aux cours →</button>
+    <button class="btn-primary" id="modalCloseBtn">Accéder aux cours →</button>
   </div>
 </div>
 
 <script src="data.js"></script>
-
 <script src="app.js"></script>
-
 </body>
 </html>
