@@ -1843,10 +1843,80 @@ function renderExercices(cat) {
   });
 }
 
-// ---- IA TUTOR ----
+// ---- IA TUTOR LOCAL (sans API) ----
 var conversation = [];
 
-var IA_SYSTEME = "Tu es MathBot, un assistant pédagogique expert en mathématiques pour les étudiants BTS français. Réponds TOUJOURS en français. Sois clair, pédagogue et encourageant. Utilise des étapes numérotées pour les calculs. Donne des exemples concrets. Utilise des emojis. Maximum 300 mots par réponse.";
+var REPONSES = [
+  {
+    mots: ['suite','arithmétique','raison','premier terme'],
+    rep: "📐 <strong>Suite arithmétique</strong><br/><br/>Une suite arithmétique a une raison constante r.<br/><br/>🔑 Formules clés :<br/>• Terme général : uₙ = u₀ + n×r<br/>• Somme : S = n×(u₀+uₙ₋₁)/2<br/>• Raison : r = uₙ₊₁ − uₙ<br/><br/>✏️ Exemple : u₀=3, r=5 → u₁=8, u₂=13, uₙ=3+5n<br/><br/>💡 Astuce : si r>0 la suite est croissante, si r<0 elle est décroissante !"
+  },
+  {
+    mots: ['suite','géométrique','quotient'],
+    rep: "📐 <strong>Suite géométrique</strong><br/><br/>Une suite géométrique se multiplie par une raison q constante.<br/><br/>🔑 Formules clés :<br/>• Terme général : uₙ = u₀ × qⁿ<br/>• Somme : S = u₀×(1−qⁿ)/(1−q)<br/>• Raison : q = uₙ₊₁/uₙ<br/><br/>✏️ Exemple placement : 1000€ à 3%/an → Cₙ = 1000×1,03ⁿ<br/><br/>💡 Si |q|<1, la suite tend vers 0. Si q>1, elle tend vers +∞ !"
+  },
+  {
+    mots: ['dériver','dérivée','derive','f prime','f\''],
+    rep: "✏️ <strong>Dérivation</strong><br/><br/>🔑 Dérivées usuelles :<br/>• (xⁿ)' = nxⁿ⁻¹<br/>• (eˣ)' = eˣ<br/>• (ln x)' = 1/x<br/>• (√x)' = 1/(2√x)<br/><br/>🔑 Règles :<br/>• (uv)' = u'v + uv'<br/>• (u/v)' = (u'v−uv')/v²<br/>• (uⁿ)' = nu'uⁿ⁻¹<br/>• (eᵘ)' = u'eᵘ<br/>• (ln u)' = u'/u<br/><br/>💡 La dérivée donne la pente de la tangente et le sens de variation !"
+  },
+  {
+    mots: ['intégrale','intégrer','primitive','aire'],
+    rep: "📊 <strong>Intégration</strong><br/><br/>🔑 Primitives usuelles :<br/>• ∫xⁿ dx = xⁿ⁺¹/(n+1) + C<br/>• ∫eˣ dx = eˣ + C<br/>• ∫1/x dx = ln|x| + C<br/>• ∫u'eᵘ dx = eᵘ + C<br/>• ∫u'/u dx = ln|u| + C<br/><br/>🔑 Intégrale définie :<br/>∫ₐᵇ f(x)dx = [F(x)]ₐᵇ = F(b) − F(a)<br/><br/>💡 L'intégrale = aire sous la courbe entre a et b !"
+  },
+  {
+    mots: ['ln','logarithme','log'],
+    rep: "📐 <strong>Logarithme népérien</strong><br/><br/>🔑 Propriétés :<br/>• ln(ab) = ln(a) + ln(b)<br/>• ln(a/b) = ln(a) − ln(b)<br/>• ln(aⁿ) = n×ln(a)<br/>• ln(1) = 0, ln(e) = 1<br/><br/>🔑 Dérivée : [ln(u)]' = u'/u<br/><br/>✏️ Résoudre e^(2x) = 5 :<br/>2x = ln(5) → x = ln(5)/2 ≈ 0,805<br/><br/>⚠️ ln(x) n'existe que pour x > 0 !"
+  },
+  {
+    mots: ['exponentielle','exp','e^'],
+    rep: "📐 <strong>Fonction exponentielle</strong><br/><br/>🔑 Propriétés :<br/>• eᵃ × eᵇ = eᵃ⁺ᵇ<br/>• (eᵃ)ᵇ = eᵃᵇ<br/>• eˣ > 0 toujours !<br/>• (eˣ)' = eˣ (unique !)<br/><br/>🔑 Limites :<br/>• lim eˣ = +∞ (x→+∞)<br/>• lim eˣ = 0 (x→−∞)<br/><br/>💡 L'exponentielle modélise la croissance : population, capital, bactéries..."
+  },
+  {
+    mots: ['probabilité','proba','chance','événement'],
+    rep: "🎲 <strong>Probabilités</strong><br/><br/>🔑 Formules de base :<br/>• P(Ā) = 1 − P(A)<br/>• P(A∪B) = P(A) + P(B) − P(A∩B)<br/>• P(A|B) = P(A∩B) / P(B)<br/><br/>🔑 Probabilités totales :<br/>P(B) = P(B|A₁)P(A₁) + P(B|A₂)P(A₂)<br/><br/>💡 Toujours dessiner un arbre de probabilités pour les problèmes complexes !"
+  },
+  {
+    mots: ['binomiale','bernoulli','b(n','loi b'],
+    rep: "🎲 <strong>Loi binomiale B(n,p)</strong><br/><br/>On répète n fois une épreuve avec succès (proba p).<br/><br/>🔑 Formules :<br/>• P(X=k) = C(n,k) × pᵏ × (1−p)ⁿ⁻ᵏ<br/>• E(X) = np (espérance)<br/>• V(X) = np(1−p) (variance)<br/>• σ = √(np(1−p))<br/><br/>✏️ Exemple : n=10, p=0,3<br/>E(X) = 3, σ = √2,1 ≈ 1,45<br/><br/>💡 C(n,k) = n! / [k!(n−k)!]"
+  },
+  {
+    mots: ['moyenne','médiane','écart','variance','statistique'],
+    rep: "📊 <strong>Statistiques</strong><br/><br/>🔑 Indicateurs :<br/>• Moyenne : x̄ = Σxᵢ/n<br/>• Variance : σ² = Σxᵢ²/n − x̄²<br/>• Écart-type : σ = √(σ²)<br/>• Médiane : valeur centrale<br/><br/>🔑 Régression y = ax + b :<br/>• a = Cov(X,Y) / V(X)<br/>• b = ȳ − a×x̄<br/><br/>💡 Plus σ est grand, plus les données sont dispersées !"
+  },
+  {
+    mots: ['matrice','déterminant','inverse'],
+    rep: "📐 <strong>Matrices</strong><br/><br/>🔑 Déterminant 2×2 :<br/>det([[a,b],[c,d]]) = ad − bc<br/><br/>🔑 Matrice inverse :<br/>A⁻¹ = (1/det) × [[d,−b],[−c,a]]<br/><br/>🔑 Produit AB :<br/>(AB)ᵢⱼ = ligne i de A × colonne j de B<br/><br/>⚠️ AB ≠ BA en général !<br/><br/>💡 Pour résoudre AX=B : X = A⁻¹B"
+  },
+  {
+    mots: ['limite','asymptote','tend vers','lim'],
+    rep: "📐 <strong>Limites</strong><br/><br/>🔑 Formes indéterminées (FI) à lever :<br/>• ∞/∞ → diviser par le terme dominant<br/>• 0/0 → factoriser<br/>• ∞−∞ → factoriser<br/><br/>🔑 Limites usuelles :<br/>• lim eˣ = +∞ (x→+∞)<br/>• lim ln(x) = −∞ (x→0⁺)<br/>• lim xⁿeˣ = 0 (x→−∞)<br/><br/>💡 Asymptote verticale : lim f(x) = ±∞<br/>Asymptote horizontale : lim f(x) = L"
+  },
+  {
+    mots: ['optimis','maximum','minimum','extremum','bénéfice','profit'],
+    rep: "📊 <strong>Optimisation</strong><br/><br/>🔑 Méthode :<br/>1. Modéliser la fonction f(x)<br/>2. Calculer f'(x)<br/>3. Résoudre f'(x) = 0<br/>4. Vérifier le signe de f''(x)<br/>   • f''< 0 → maximum<br/>   • f''> 0 → minimum<br/>5. Calculer la valeur optimale<br/><br/>💡 En économie : bénéfice max quand recette marginale = coût marginal !"
+  },
+  {
+    mots: ['système','équation','résoudre','inconnue'],
+    rep: "📐 <strong>Systèmes d'équations</strong><br/><br/>🔑 Méthode substitution :<br/>1. Exprimer x en fonction de y<br/>2. Substituer dans l'autre équation<br/>3. Résoudre → trouver y puis x<br/><br/>🔑 Méthode combinaison :<br/>1. Multiplier pour avoir des coefficients opposés<br/>2. Additionner pour éliminer une variable<br/><br/>✏️ Vérifier toujours la solution dans les 2 équations !"
+  },
+  {
+    mots: ['pgcd','ppcm','divisible','arithmétique'],
+    rep: "📐 <strong>Arithmétique</strong><br/><br/>🔑 PGCD — Algorithme d'Euclide :<br/>PGCD(a,b) : diviser a par b, reste r<br/>Puis PGCD(b,r)... jusqu'à reste 0<br/><br/>✏️ PGCD(48,18) :<br/>48 = 2×18 + 12<br/>18 = 1×12 + 6<br/>12 = 2×6 + 0 → PGCD = 6<br/><br/>🔑 PPCM(a,b) = a×b / PGCD(a,b)"
+  }
+];
+
+function trouverReponse(msg) {
+  var msgLower = msg.toLowerCase();
+  for (var i = 0; i < REPONSES.length; i++) {
+    var r = REPONSES[i];
+    for (var j = 0; j < r.mots.length; j++) {
+      if (msgLower.indexOf(r.mots[j]) !== -1) {
+        return r.rep;
+      }
+    }
+  }
+  return "🤔 Je n'ai pas de réponse précise sur ce sujet, mais voici ce que je te conseille :<br/><br/>📚 Consulte le cours correspondant dans l'onglet <strong>Cours</strong><br/>✏️ Entraîne-toi avec les <strong>Exercices corrigés</strong><br/><br/>Les thèmes que je connais : suites, dérivées, intégrales, logarithme, exponentielle, probabilités, statistiques, matrices, systèmes, optimisation.<br/><br/>💡 Essaie de reformuler ta question avec un de ces mots clés !";
+}
 
 function sendIAMessage() {
   var input = document.getElementById('iaInput');
@@ -1855,36 +1925,14 @@ function sendIAMessage() {
 
   addMessage(msg, 'user');
   input.value = '';
-  conversation.push({ role: 'user', content: msg });
-  if (conversation.length > 10) conversation = conversation.slice(-10);
 
   var typingId = addTyping();
 
-  fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 1000,
-      system: IA_SYSTEME,
-      messages: conversation
-    })
-  })
-  .then(function(response) { return response.json(); })
-  .then(function(data) {
+  setTimeout(function() {
     removeTyping(typingId);
-    if (data.content && data.content[0]) {
-      var reply = data.content[0].text;
-      conversation.push({ role: 'assistant', content: reply });
-      addMessage(reply, 'bot');
-    } else {
-      addMessage('Désolé, une erreur s\'est produite. Réessaie ! 😊', 'bot');
-    }
-  })
-  .catch(function() {
-    removeTyping(typingId);
-    addMessage('Connexion impossible à l\'IA pour l\'instant. Consulte les cours en attendant ! 📚', 'bot');
-  });
+    var rep = trouverReponse(msg);
+    addMessage(rep, 'bot');
+  }, 800);
 }
 
 function addMessage(text, role) {
